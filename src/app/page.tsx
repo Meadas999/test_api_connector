@@ -1,7 +1,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import SignIn from "../components/sign-in";
 
 export default function Home() {
+  console.log(process.env.AUTH_AZURE_AD_B2C_ID?.toString());
+console.log(process.env.AUTH_AZURE_AD_B2C_SECRET);
+console.log(process.env.AUTH_AZURE_AD_B2C_ISSUER);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -15,11 +20,14 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>src/app/page.tsx</code>.
+            Get started by editing, <code>src/app/page.tsx</code>.
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
-
+        <div>
+          
+        <SignIn/> 
+        </div>
         <div className={styles.ctas}>
           <a
             className={styles.primary}
