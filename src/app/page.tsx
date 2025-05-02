@@ -53,6 +53,10 @@ console.log(process.env.AUTH_AZURE_AD_B2C_ISSUER);
             Read our docs
           </a>
         </div>
+        <br />
+        <br />
+        <br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       </main>
       <footer className={styles.footer}>
         <a

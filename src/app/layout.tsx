@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import UpperNavBar from "../components/UpperNavBar";
 
 const geistSans = localFont({
   src: [
@@ -41,9 +42,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log(children)
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" >
+      
+      <body className={`${geistSans.variable} ${geistMono.variable}` }>
+      <UpperNavBar />
         {children}
       </body>
     </html>

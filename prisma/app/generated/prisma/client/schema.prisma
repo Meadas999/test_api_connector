@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "app/generated/prisma/client"
+}
+
+model company {
+  id   String @id @default(cuid())
+  name String
+  api  api[]
+}
+
+model api {
+  id          String     @id @default(cuid())
+  name        String
+  company     company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId   String
+  baseurl     String
+  description String?
+  apiAuth     apiAuth?
+  endpoints   endpoint[]
+}
+
+model endpoint {
+  id               String    @id @default(cuid())
+  name             String
+  api              api       @relation(fields: [apiId], references: [id], onDelete: Cascade)
+  apiId            String    @unique
+  method           String
+  path             String
+  sourceendpoint   endpoint? @relation("EndpointToTarget")
+  targetendpoint   endpoint? @relation("EndpointToTarget", fields: [targetendpointId], references: [id])
+  targetendpointId String?   @unique
+  description      String?
+  mapping          mapping[]
+}
+
+model mapping {
+  id          String   @id @default(cuid())
+  name        String
+  endpoint    endpoint @relation(fields: [endpointId], references: [id], onDelete: Cascade)
+  endpointId  String
+  sourceField String
+  targetField String
+}
+
+model apiAuth {
+  id           String  @id @default(cuid())
+  name         String
+  api          api     @relation(fields: [apiId], references: [id], onDelete: Cascade)
+  apiId        String  @unique
+  type         String
+  clientId     String?
+  clientSecret String?
+  tokenUrl     String?
+  authUrl      String?
+  scopes       String?
+  redirectUrl  String?
+  description  String?
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
