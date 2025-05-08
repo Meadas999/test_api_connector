@@ -22,7 +22,7 @@ export default function ApplicationsTable({ apis }: Props) {
   
   
 
-  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
+const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.stopPropagation();
     redirect(`/applications/${id}`); // Redirect to the company details page
     //do whatever you want with the row
@@ -62,7 +62,7 @@ export default function ApplicationsTable({ apis }: Props) {
   const paginationModel = { page: 0, pageSize: 10 };
 
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper sx={{ width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}

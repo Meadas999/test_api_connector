@@ -33,6 +33,12 @@
   gap: 32px;
   grid-row-start: 2;
 }
+.mappingTable{
+  margin: 10px;
+}
+.mappingUpdateButton{
+  float: right;
+}
 
 .main ol {
   font-family: var(--font-geist-mono);
