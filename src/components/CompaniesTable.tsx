@@ -2,14 +2,19 @@ import Paper from "@mui/material/Paper";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { prisma } from "@/app/prisma";
 import { act } from "react";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import Button from "@mui/material/Button";
 import { redirect } from "next/navigation";
+import IconButton from "@mui/material/IconButton";
 
 type CompaniesTableProps = {
   companies: { id: string; name: string }[]; // Define the type for companies
+    onDelete: (id: string) => void;
+
 };
 
-export default function CompaniesTable({ companies }: CompaniesTableProps) {
+export default function CompaniesTable({ companies, onDelete }: CompaniesTableProps) {
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>, row: { id: string; company: string }) => {
     e.stopPropagation();
     redirect(`/companies/${row.id}`); // Redirect to the company details page
@@ -19,14 +24,21 @@ export default function CompaniesTable({ companies }: CompaniesTableProps) {
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "company", headerName: "Company", width: 130 },
-    { field: "actions", headerName: "Actions", width: 130, renderCell: (params) => {
+    { field: "actions", headerName: "Actions", width: 160, renderCell: (params) => {
       return (
-        <Button
-          onClick={(e) => onButtonClick(e, params.row)}
-          variant="contained"
-        >
-          View
-        </Button>
+        <>
+          <Button
+            onClick={() => redirect(`/companies/${params.row.id}`)}
+            variant="contained"
+            sx={{ marginRight: 1 }}
+          >
+            View
+          </Button>
+          
+          <IconButton aria-label="delete" onClick={() => onDelete(params.row.id)}>
+                  <DeleteIcon />
+                </IconButton>
+        </>
       );
     }},
   ];

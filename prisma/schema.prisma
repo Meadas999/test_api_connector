@@ -35,7 +35,7 @@ model endpoint {
   id               String    @id @default(cuid())
   name             String
   api              api       @relation(fields: [apiId], references: [id], onDelete: Cascade)
-  apiId            String    @unique
+  apiId            String    
   method           String
   path             String
   sourceendpoint   endpoint? @relation("EndpointToTarget")

@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import { prisma } from "@/app/prisma";
 import EndpointTabs from "./EndpointTabs";
 import { useState, useEffect } from 'react'
+import CreateEndpointModal from "./CreateEndpointModal";
+
 
 
 type Props = {
@@ -34,7 +36,7 @@ const style = {
 };
 
 function ChildModal({ endpointId }: { endpointId: string }) {
-  
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -55,7 +57,7 @@ function ChildModal({ endpointId }: { endpointId: string }) {
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style, width: 800, height: 600 }}>
-          <EndpointTabs endpointId={endpointId}/>
+          <EndpointTabs endpointId={endpointId} />
           <Button onClick={handleClose}>Close Child Modal</Button>
         </Box>
       </Modal>
@@ -65,13 +67,23 @@ function ChildModal({ endpointId }: { endpointId: string }) {
 
 
 
-export default function EndpointsTable({ endpoints }: Props) {
-
-
+export default function EndpointsTable({ endpoints, apiId }: Props & { apiId: string }) {
+  const [rows, setRows] = useState(
+    endpoints.map((a) => ({
+      id: a.id,
+      name: a.name,
+      description: a.description,
+      method: a.method,
+      path: a.path,
+      mapping: a.targetendpointId,
+    }))
+  );
+  const handleCreateEndpoint = (newEndpoint: any) => {
+    setRows((prev) => [...prev, newEndpoint]);
+  };
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.stopPropagation();
     // Redirect to the company details page
-    //do whatever you want with the row
   };
 
   const columns: GridColDef[] = [
@@ -88,24 +100,16 @@ export default function EndpointsTable({ endpoints }: Props) {
     },
   ];
 
-  const rows = endpoints.map((a) => ({
-    id: a.id,
-    name: a.name,
-    description: a.description,
-    method: a.method,
-    path: a.path,
-    mapping: a.targetendpointId
 
-
-
-
-  }));
 
   // Set the initial state for pagination
   const paginationModel = { page: 0, pageSize: 10 };
 
   return (
     <Paper sx={{ height: 400, width: "100%" }}>
+      <div style={{ float: "right", margin: "10px" }}>
+      <CreateEndpointModal onCreate={handleCreateEndpoint} apiId={apiId} />
+      </div>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -113,6 +117,7 @@ export default function EndpointsTable({ endpoints }: Props) {
         pageSizeOptions={[5, 10]}
         sx={{ border: 0 }}
       />
+
     </Paper>
   );
 }

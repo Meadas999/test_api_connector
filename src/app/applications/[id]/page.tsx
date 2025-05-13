@@ -10,6 +10,7 @@ export default async function Page({
 }: {
   params: Promise<{ id: string }>
 }) {
+  const id  = (await params).id;
   const endpoints = await prisma.endpoint.findMany({
     where: {
       apiId: (await params).id,
@@ -34,7 +35,7 @@ export default async function Page({
       <main className={styles.main}>
         <h1>Configured endpoints</h1>
         <p>List of endpoints which can be mapped.</p>
-        <EndpointsTable endpoints={endpoints} />
+        <EndpointsTable endpoints={endpoints} apiId={id}/>
         
       </main>
     </div>

@@ -38,6 +38,7 @@
 }
 .mappingUpdateButton{
   float: right;
+  margin: 30px!important;
 }
 
 .main ol {

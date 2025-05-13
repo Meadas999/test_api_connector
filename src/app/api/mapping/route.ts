@@ -15,6 +15,27 @@ export async function GET(request: Request) {
     return NextResponse.json(mappings, { status: 200 });
 }
 
+export async function POST(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const endpointId = searchParams.get('endpointId');
+
+    if (!endpointId) {
+        return NextResponse.json({ error: "Missing endpointId parameter" }, { status: 400 });
+    }
+
+    const body = await request.json();
+    const result = await prisma.mapping.create({
+        data: {
+            sourceField: body.sourceField,
+            targetField: body.targetField,
+            endpointId: endpointId,
+            name: "Objectkenmerk", // Add a default or placeholder name
+        },
+    });
+
+    return NextResponse.json(result, { status: 200 });
+}
+
 export async function PUT (request: Request) {
     const { searchParams } = new URL(request.url);
     const endpointId = searchParams.get('endpointId');
@@ -38,4 +59,20 @@ export async function PUT (request: Request) {
 
     return NextResponse.json(results, { status: 200 });
 }
+
+export async function DELETE(request: Request) {    
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+        return NextResponse.json({ error: "Missing id parameter" }, { status: 400 });
+    }
+
+    const result = await prisma.mapping.delete({
+        where: { id: id },
+    });
+
+    return NextResponse.json(result, { status: 200 });
+}
+
 

@@ -13204,12 +13204,12 @@ export namespace Prisma {
 
   export type endpointWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    apiId?: string
     targetendpointId?: string
     AND?: endpointWhereInput | endpointWhereInput[]
     OR?: endpointWhereInput[]
     NOT?: endpointWhereInput | endpointWhereInput[]
     name?: StringFilter<"endpoint"> | string
+    apiId?: StringFilter<"endpoint"> | string
     method?: StringFilter<"endpoint"> | string
     path?: StringFilter<"endpoint"> | string
     description?: StringNullableFilter<"endpoint"> | string | null
@@ -13217,7 +13217,7 @@ export namespace Prisma {
     sourceendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
     targetendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
     mapping?: MappingListRelationFilter
-  }, "id" | "apiId" | "targetendpointId">
+  }, "id" | "targetendpointId">
 
   export type endpointOrderByWithAggregationInput = {
     id?: SortOrder
