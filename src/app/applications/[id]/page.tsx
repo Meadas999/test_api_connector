@@ -1,44 +1,62 @@
-
+'use client';
+import { useState, useEffect } from 'react';
 import styles from "@/app/page.module.css";
-import { prisma } from "@/app/prisma";
-import EndpointTabs from "@/components/EndpointTabs";
 import EndpointsTable from "@/components/EndpointsTable";
-import { notFound } from 'next/navigation';
 
-export default async function Page({
+type EndpointType = {
+  id: string;
+  name: string;
+  description: string | null;
+  method: string;
+  path: string;
+  targetendpointId: string | null;
+};
+
+export default function Page({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }) {
-  const id  = (await params).id;
-  const endpoints = await prisma.endpoint.findMany({
-    where: {
-      apiId: (await params).id,
-    },
+  const [endpoints, setEndpoints] = useState<EndpointType[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const fetchEndpoints = async () => {
+      try {
+        const response = await fetch(`/api/endpoints?apiId=${params.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setEndpoints(data);
+        } else {
+          console.error("Failed to fetch endpoints");
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching endpoints:", error);
+        setLoading(false);
+      }
+    };
     
-  });
-
-  if (!endpoints) return notFound();
-
-  const formattedendpoints = endpoints.map((e) => ({
-    id: e.id,
-    name: e.name, 
-    description: e.description,
-    method: e.method,
-    path: e.path,
-    targetendpointId: e.targetendpointId,
-   
-  }));
+    fetchEndpoints();
+  }, [params.id]);
+  
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <main className={styles.main}>
+          <p>Loading...</p>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>Configured endpoints</h1>
         <p>List of endpoints which can be mapped.</p>
-        <EndpointsTable endpoints={endpoints} apiId={id}/>
-        
+        <EndpointsTable endpoints={endpoints} apiId={params.id} />
       </main>
     </div>
-    
   );
 }

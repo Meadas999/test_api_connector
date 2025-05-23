@@ -1,38 +1,51 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 import { prisma } from "@/app/prisma";
 
-export async function POST(request: Request) {
-    
-    
-    const body = await request.json();
-    console.log(body);;
-    const result = await prisma.endpoint.create({
-        data: {
-            name: body.name,
-            description: body.description,
-            method: body.method,
-            path: body.path,
-            targetendpointId: body.targetendpointId,
-            apiId: body.apiId, // Ensure 'api' is provided in the request body
-        },
-    });
-
-    return NextResponse.json(result, { status: 200 });
-}
-
-export async function GET() {
+export async function GET(request: Request) {
     try {
-        const endpoints = await prisma.endpoint.findMany({
-            select: {
-                id: true,
-                name: true,
-                path: true,
-            },
-        });
-
-        return NextResponse.json(endpoints, { status: 200 });
+        const { searchParams } = new URL(request.url);
+        const apiId = searchParams.get('apiId');
+        
+        let endpoints;
+        
+        if (apiId) {
+            // Fetch endpoints for a specific API
+            endpoints = await prisma.endpoint.findMany({
+                where: { apiId },
+                include: { targetendpoint: true }
+            });
+        } else {
+            // Fetch all endpoints
+            endpoints = await prisma.endpoint.findMany({
+                include: { targetendpoint: true }
+            });
+        }
+        
+        return NextResponse.json(endpoints);
     } catch (error) {
         console.error("Error fetching endpoints:", error);
         return NextResponse.json({ error: "Failed to fetch endpoints" }, { status: 500 });
     }
-}   
+}
+
+export async function POST(request: Request) {
+    try {
+        const data = await request.json();
+        
+        const newEndpoint = await prisma.endpoint.create({
+            data: {
+                name: data.name,
+                description: data.description,
+                method: data.method,
+                path: data.path,
+                apiId: data.apiId,
+                targetendpointId: data.targetendpointId
+            }
+        });
+        
+        return NextResponse.json(newEndpoint, { status: 201 });
+    } catch (error) {
+        console.error("Error creating endpoint:", error);
+        return NextResponse.json({ error: "Failed to create endpoint" }, { status: 500 });
+    }
+}

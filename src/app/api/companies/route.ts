@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   const company = await prisma.company.create({
     data: { name: body.name }
   });
-  return NextResponse.json(company, { status: 201 });
+  return NextResponse.json(company, { status: 200 });
 }
 
 // DELETE a company by id
