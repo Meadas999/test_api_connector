@@ -7,7 +7,7 @@ export async function PUT(
     { params }: { params: { id: string } }
 ) {
     try {
-        const id =  await params.id;
+        const id = params.id;
         const body = await request.json();
 
         const updatedApi = await prisma.api.update({
@@ -32,7 +32,7 @@ export async function GET(
     { params }: { params: { id: string } }
 ) {
     try {
-        const id =  await params.id;
+        const id = params.id;  // Remove 'await' here
         
         const api = await prisma.api.findUnique({
             where: { id },
