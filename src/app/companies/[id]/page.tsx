@@ -16,14 +16,15 @@ type Api = {
   endpointCount: number;
 };
 
-export default function Page({
+export default async function Page({
   params,
 }: {
-  params: { id: string }
+  params: Promise< { id: string }>
 }) {
   const [apis, setApis] = useState<Api[]>([]);
   const [loading, setLoading] = useState(true);
   const [companyName, setCompanyName] = useState('');
+  const { id } = await params;
 
   useEffect(() => {
     fetchCompanyAndApis();
@@ -33,7 +34,7 @@ export default function Page({
     setLoading(true);
     try {
       // Fetch company info
-      const companyResponse = await fetch(`/api/companies/${params.id}`);
+      const companyResponse = await fetch(`/api/companies/${id}`);
       if (!companyResponse.ok) {
         if (companyResponse.status === 404) {
           notFound();
@@ -44,7 +45,7 @@ export default function Page({
       setCompanyName(companyData.name);
 
       // Fetch APIs for this company
-      const apisResponse = await fetch(`/api/applications?companyId=${params.id}`);
+      const apisResponse = await fetch(`/api/applications?companyId=${id}`);
       if (!apisResponse.ok) {
         throw new Error('Failed to fetch APIs');
       }
@@ -134,7 +135,7 @@ export default function Page({
           <h1>APIs for {companyName}</h1>
           <CreateApiModal 
             onCreate={handleCreateApi} 
-            companyId={params.id} 
+            companyId={id} 
           />
         </div>
         <p>Manage APIs for this company</p>

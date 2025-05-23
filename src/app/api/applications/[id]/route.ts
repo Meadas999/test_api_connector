@@ -4,14 +4,14 @@ import { prisma } from "@/app/prisma";
 // Update an API by ID
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const id = params.id;
+        const id = await params;
         const body = await request.json();
 
         const updatedApi = await prisma.api.update({
-            where: { id },
+            where: id ,
             data: {
                 name: body.name,
                 baseurl: body.baseurl,
@@ -29,13 +29,13 @@ export async function PUT(
 // Get a single API by ID
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string } >}
 ) {
     try {
-        const id = params.id;  // Remove 'await' here
+        const id = await params;  // Remove 'await' here
         
         const api = await prisma.api.findUnique({
-            where: { id },
+            where: id ,
             include: {
                 apiAuth: true,
                 endpoints: {

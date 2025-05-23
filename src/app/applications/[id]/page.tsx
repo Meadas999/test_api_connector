@@ -12,18 +12,20 @@ type EndpointType = {
   targetendpointId: string | null;
 };
 
-export default function Page({
+export default async function Page({
   params,
 }: {
-  params: { id: string }
+  params: Promise <{ id: string }>
 }) {
   const [endpoints, setEndpoints] = useState<EndpointType[]>([]);
   const [loading, setLoading] = useState(true);
+  const {id} = await params;
+  
   
   useEffect(() => {
     const fetchEndpoints = async () => {
       try {
-        const response = await fetch(`/api/endpoints?apiId=${params.id}`);
+        const response = await fetch(`/api/endpoints?apiId=${id}`);
         if (response.ok) {
           const data = await response.json();
           setEndpoints(data);
@@ -38,7 +40,7 @@ export default function Page({
     };
     
     fetchEndpoints();
-  }, [params.id]);
+  }, [id]);
   
   if (loading) {
     return (
@@ -55,7 +57,7 @@ export default function Page({
       <main className={styles.main}>
         <h1>Configured endpoints</h1>
         <p>List of endpoints which can be mapped.</p>
-        <EndpointsTable endpoints={endpoints} apiId={params.id} />
+        <EndpointsTable endpoints={endpoints} apiId={(await params).id} />
       </main>
     </div>
   );

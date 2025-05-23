@@ -4,14 +4,14 @@ import { prisma } from "@/app/prisma";
 // Update an endpoint by ID
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string } >}
 ) {
     try {
-        const id = params.id;
+        const id = await params;
         const body = await request.json();
 
         const updatedEndpoint = await prisma.endpoint.update({
-            where: { id },
+            where: id ,
             data: {
                 name: body.name,
                 description: body.description,
@@ -31,19 +31,20 @@ export async function PUT(
 // Delete an endpoint by ID
 export async function DELETE(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const id = params.id;
+        const id = await params;
 
         // First delete all mappings that reference this endpoint
         await prisma.mapping.deleteMany({
-            where: { endpointId: id }
+            where: {
+                endpointId: id.id,}
         });
 
         // Then delete the endpoint
         const deletedEndpoint = await prisma.endpoint.delete({
-            where: { id }
+            where: id 
         });
 
         return NextResponse.json(deletedEndpoint, { status: 200 });
