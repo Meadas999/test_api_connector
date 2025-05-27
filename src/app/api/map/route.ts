@@ -19,7 +19,7 @@ export async function POST(request: Request) {
             where: { id: endpointId },
             include: {
                 mapping: true,
-                targetendpoint: {
+                targetendpoint: {  // Changed from targetendpoint to sourceendpoint
                     include: {
                         api: {
                             select: {
@@ -27,8 +27,6 @@ export async function POST(request: Request) {
                             }
                         }
                     }
-                    
-
                 }
             }
         });
@@ -40,22 +38,17 @@ export async function POST(request: Request) {
         if (!sourceEndpoint.targetendpoint) {
             return NextResponse.json({ error: "No target endpoint configured" }, { status: 400 });
         }
+
         console.log("Source Endpoint:", sourceEndpoint);
         // Transform the source object according to the mappings
         const transformedObject: Record<string, any> = {};
 
         for (const mapping of sourceEndpoint.mapping) {
-            // Handle dot notation in sourceField
-                console.log(`Processing mapping: ${mapping.sourceField} → ${mapping.targetField}`);
-
+            console.log(`Processing mapping: ${mapping.sourceField} → ${mapping.targetField}`);
             const value = getNestedValue(sourceObject, mapping.sourceField);
-                console.log(`  Value found: ${JSON.stringify(value)}`);
-
-
-            // Handle dot notation in targetField
+            console.log(`  Value found: ${JSON.stringify(value)}`);
             setNestedValue(transformedObject, mapping.targetField, value);
-                console.log(`  After setting: ${JSON.stringify(transformedObject)}`);
-
+            console.log(`  After setting: ${JSON.stringify(transformedObject)}`);
         }
 
         // Helper function to get nested values using dot notation
@@ -90,10 +83,10 @@ export async function POST(request: Request) {
         }
 
         // Send the transformed object to the target endpoint
-        const targetUrl = sourceEndpoint.targetendpoint.api.baseurl + sourceEndpoint.targetendpoint.path;
+        const targetUrl = (sourceEndpoint.targetendpoint?.api.baseurl ?? "") + (sourceEndpoint.targetendpoint?.path ?? "");  // Changed from array access
         console.log("Target URL:", targetUrl);
         console.log("Transformed Object:", transformedObject);
-        const targetMethod = sourceEndpoint.targetendpoint.method;
+        const targetMethod = sourceEndpoint.targetendpoint?.method;  // Changed from array access
         console.log("Target Method:", targetMethod);
         const response = await fetch(targetUrl, {
             method: targetMethod,

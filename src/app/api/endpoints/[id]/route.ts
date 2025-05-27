@@ -17,7 +17,7 @@ export async function PUT(
                 description: body.description,
                 method: body.method,
                 path: body.path,
-                targetendpointId: body.targetendpointId || null, // Allow null for targetendpointId
+                targetendpointId: body.targetendpointId, 
             },
         });
 

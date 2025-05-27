@@ -1750,12 +1750,12 @@ export namespace Prisma {
    */
 
   export type EndpointCountOutputType = {
-    targetendpoint: number
+    sourceendpoint: number
     mapping: number
   }
 
   export type EndpointCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    targetendpoint?: boolean | EndpointCountOutputTypeCountTargetendpointArgs
+    sourceendpoint?: boolean | EndpointCountOutputTypeCountSourceendpointArgs
     mapping?: boolean | EndpointCountOutputTypeCountMappingArgs
   }
 
@@ -1773,7 +1773,7 @@ export namespace Prisma {
   /**
    * EndpointCountOutputType without action
    */
-  export type EndpointCountOutputTypeCountTargetendpointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EndpointCountOutputTypeCountSourceendpointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: endpointWhereInput
   }
 
@@ -4161,8 +4161,8 @@ export namespace Prisma {
     targetendpointId?: boolean
     description?: boolean
     api?: boolean | apiDefaultArgs<ExtArgs>
-    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
     targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
+    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
     mapping?: boolean | endpoint$mappingArgs<ExtArgs>
     _count?: boolean | EndpointCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["endpoint"]>
@@ -4176,7 +4176,7 @@ export namespace Prisma {
     targetendpointId?: boolean
     description?: boolean
     api?: boolean | apiDefaultArgs<ExtArgs>
-    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
+    targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
   }, ExtArgs["result"]["endpoint"]>
 
   export type endpointSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4188,7 +4188,7 @@ export namespace Prisma {
     targetendpointId?: boolean
     description?: boolean
     api?: boolean | apiDefaultArgs<ExtArgs>
-    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
+    targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
   }, ExtArgs["result"]["endpoint"]>
 
   export type endpointSelectScalar = {
@@ -4204,26 +4204,26 @@ export namespace Prisma {
   export type endpointOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "apiId" | "method" | "path" | "targetendpointId" | "description", ExtArgs["result"]["endpoint"]>
   export type endpointInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     api?: boolean | apiDefaultArgs<ExtArgs>
-    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
     targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
+    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
     mapping?: boolean | endpoint$mappingArgs<ExtArgs>
     _count?: boolean | EndpointCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type endpointIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     api?: boolean | apiDefaultArgs<ExtArgs>
-    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
+    targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
   }
   export type endpointIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     api?: boolean | apiDefaultArgs<ExtArgs>
-    sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
+    targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
   }
 
   export type $endpointPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "endpoint"
     objects: {
       api: Prisma.$apiPayload<ExtArgs>
-      sourceendpoint: Prisma.$endpointPayload<ExtArgs> | null
-      targetendpoint: Prisma.$endpointPayload<ExtArgs>[]
+      targetendpoint: Prisma.$endpointPayload<ExtArgs> | null
+      sourceendpoint: Prisma.$endpointPayload<ExtArgs>[]
       mapping: Prisma.$mappingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4629,8 +4629,8 @@ export namespace Prisma {
   export interface Prisma__endpointClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     api<T extends apiDefaultArgs<ExtArgs> = {}>(args?: Subset<T, apiDefaultArgs<ExtArgs>>): Prisma__apiClient<$Result.GetResult<Prisma.$apiPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    sourceendpoint<T extends endpoint$sourceendpointArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$sourceendpointArgs<ExtArgs>>): Prisma__endpointClient<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    targetendpoint<T extends endpoint$targetendpointArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$targetendpointArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    targetendpoint<T extends endpoint$targetendpointArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$targetendpointArgs<ExtArgs>>): Prisma__endpointClient<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    sourceendpoint<T extends endpoint$sourceendpointArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$sourceendpointArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mapping<T extends endpoint$mappingArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$mappingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mappingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5064,9 +5064,9 @@ export namespace Prisma {
   }
 
   /**
-   * endpoint.sourceendpoint
+   * endpoint.targetendpoint
    */
-  export type endpoint$sourceendpointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type endpoint$targetendpointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the endpoint
      */
@@ -5083,9 +5083,9 @@ export namespace Prisma {
   }
 
   /**
-   * endpoint.targetendpoint
+   * endpoint.sourceendpoint
    */
-  export type endpoint$targetendpointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type endpoint$sourceendpointArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the endpoint
      */
@@ -13197,8 +13197,8 @@ export namespace Prisma {
     targetendpointId?: StringNullableFilter<"endpoint"> | string | null
     description?: StringNullableFilter<"endpoint"> | string | null
     api?: XOR<ApiScalarRelationFilter, apiWhereInput>
-    sourceendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
-    targetendpoint?: EndpointListRelationFilter
+    targetendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
+    sourceendpoint?: EndpointListRelationFilter
     mapping?: MappingListRelationFilter
   }
 
@@ -13211,8 +13211,8 @@ export namespace Prisma {
     targetendpointId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     api?: apiOrderByWithRelationInput
-    sourceendpoint?: endpointOrderByWithRelationInput
-    targetendpoint?: endpointOrderByRelationAggregateInput
+    targetendpoint?: endpointOrderByWithRelationInput
+    sourceendpoint?: endpointOrderByRelationAggregateInput
     mapping?: mappingOrderByRelationAggregateInput
   }
 
@@ -13228,8 +13228,8 @@ export namespace Prisma {
     targetendpointId?: StringNullableFilter<"endpoint"> | string | null
     description?: StringNullableFilter<"endpoint"> | string | null
     api?: XOR<ApiScalarRelationFilter, apiWhereInput>
-    sourceendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
-    targetendpoint?: EndpointListRelationFilter
+    targetendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
+    sourceendpoint?: EndpointListRelationFilter
     mapping?: MappingListRelationFilter
   }, "id">
 
@@ -13848,8 +13848,8 @@ export namespace Prisma {
     path: string
     description?: string | null
     api: apiCreateNestedOneWithoutEndpointsInput
-    sourceendpoint?: endpointCreateNestedOneWithoutTargetendpointInput
-    targetendpoint?: endpointCreateNestedManyWithoutSourceendpointInput
+    targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
+    sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
   }
 
@@ -13861,7 +13861,7 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
-    targetendpoint?: endpointUncheckedCreateNestedManyWithoutSourceendpointInput
+    sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
   }
 
@@ -13872,8 +13872,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
-    sourceendpoint?: endpointUpdateOneWithoutTargetendpointNestedInput
-    targetendpoint?: endpointUpdateManyWithoutSourceendpointNestedInput
+    targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
   }
 
@@ -13885,7 +13885,7 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    targetendpoint?: endpointUncheckedUpdateManyWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
@@ -15176,16 +15176,16 @@ export namespace Prisma {
     connect?: apiWhereUniqueInput
   }
 
-  export type endpointCreateNestedOneWithoutTargetendpointInput = {
-    create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput>
-    connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput
+  export type endpointCreateNestedOneWithoutSourceendpointInput = {
+    create?: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput>
+    connectOrCreate?: endpointCreateOrConnectWithoutSourceendpointInput
     connect?: endpointWhereUniqueInput
   }
 
-  export type endpointCreateNestedManyWithoutSourceendpointInput = {
-    create?: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput> | endpointCreateWithoutSourceendpointInput[] | endpointUncheckedCreateWithoutSourceendpointInput[]
-    connectOrCreate?: endpointCreateOrConnectWithoutSourceendpointInput | endpointCreateOrConnectWithoutSourceendpointInput[]
-    createMany?: endpointCreateManySourceendpointInputEnvelope
+  export type endpointCreateNestedManyWithoutTargetendpointInput = {
+    create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput> | endpointCreateWithoutTargetendpointInput[] | endpointUncheckedCreateWithoutTargetendpointInput[]
+    connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput | endpointCreateOrConnectWithoutTargetendpointInput[]
+    createMany?: endpointCreateManyTargetendpointInputEnvelope
     connect?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
   }
 
@@ -15196,10 +15196,10 @@ export namespace Prisma {
     connect?: mappingWhereUniqueInput | mappingWhereUniqueInput[]
   }
 
-  export type endpointUncheckedCreateNestedManyWithoutSourceendpointInput = {
-    create?: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput> | endpointCreateWithoutSourceendpointInput[] | endpointUncheckedCreateWithoutSourceendpointInput[]
-    connectOrCreate?: endpointCreateOrConnectWithoutSourceendpointInput | endpointCreateOrConnectWithoutSourceendpointInput[]
-    createMany?: endpointCreateManySourceendpointInputEnvelope
+  export type endpointUncheckedCreateNestedManyWithoutTargetendpointInput = {
+    create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput> | endpointCreateWithoutTargetendpointInput[] | endpointUncheckedCreateWithoutTargetendpointInput[]
+    connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput | endpointCreateOrConnectWithoutTargetendpointInput[]
+    createMany?: endpointCreateManyTargetendpointInputEnvelope
     connect?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
   }
 
@@ -15218,27 +15218,27 @@ export namespace Prisma {
     update?: XOR<XOR<apiUpdateToOneWithWhereWithoutEndpointsInput, apiUpdateWithoutEndpointsInput>, apiUncheckedUpdateWithoutEndpointsInput>
   }
 
-  export type endpointUpdateOneWithoutTargetendpointNestedInput = {
-    create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput>
-    connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput
-    upsert?: endpointUpsertWithoutTargetendpointInput
+  export type endpointUpdateOneWithoutSourceendpointNestedInput = {
+    create?: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput>
+    connectOrCreate?: endpointCreateOrConnectWithoutSourceendpointInput
+    upsert?: endpointUpsertWithoutSourceendpointInput
     disconnect?: endpointWhereInput | boolean
     delete?: endpointWhereInput | boolean
     connect?: endpointWhereUniqueInput
-    update?: XOR<XOR<endpointUpdateToOneWithWhereWithoutTargetendpointInput, endpointUpdateWithoutTargetendpointInput>, endpointUncheckedUpdateWithoutTargetendpointInput>
+    update?: XOR<XOR<endpointUpdateToOneWithWhereWithoutSourceendpointInput, endpointUpdateWithoutSourceendpointInput>, endpointUncheckedUpdateWithoutSourceendpointInput>
   }
 
-  export type endpointUpdateManyWithoutSourceendpointNestedInput = {
-    create?: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput> | endpointCreateWithoutSourceendpointInput[] | endpointUncheckedCreateWithoutSourceendpointInput[]
-    connectOrCreate?: endpointCreateOrConnectWithoutSourceendpointInput | endpointCreateOrConnectWithoutSourceendpointInput[]
-    upsert?: endpointUpsertWithWhereUniqueWithoutSourceendpointInput | endpointUpsertWithWhereUniqueWithoutSourceendpointInput[]
-    createMany?: endpointCreateManySourceendpointInputEnvelope
+  export type endpointUpdateManyWithoutTargetendpointNestedInput = {
+    create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput> | endpointCreateWithoutTargetendpointInput[] | endpointUncheckedCreateWithoutTargetendpointInput[]
+    connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput | endpointCreateOrConnectWithoutTargetendpointInput[]
+    upsert?: endpointUpsertWithWhereUniqueWithoutTargetendpointInput | endpointUpsertWithWhereUniqueWithoutTargetendpointInput[]
+    createMany?: endpointCreateManyTargetendpointInputEnvelope
     set?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
     disconnect?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
     delete?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
     connect?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
-    update?: endpointUpdateWithWhereUniqueWithoutSourceendpointInput | endpointUpdateWithWhereUniqueWithoutSourceendpointInput[]
-    updateMany?: endpointUpdateManyWithWhereWithoutSourceendpointInput | endpointUpdateManyWithWhereWithoutSourceendpointInput[]
+    update?: endpointUpdateWithWhereUniqueWithoutTargetendpointInput | endpointUpdateWithWhereUniqueWithoutTargetendpointInput[]
+    updateMany?: endpointUpdateManyWithWhereWithoutTargetendpointInput | endpointUpdateManyWithWhereWithoutTargetendpointInput[]
     deleteMany?: endpointScalarWhereInput | endpointScalarWhereInput[]
   }
 
@@ -15256,17 +15256,17 @@ export namespace Prisma {
     deleteMany?: mappingScalarWhereInput | mappingScalarWhereInput[]
   }
 
-  export type endpointUncheckedUpdateManyWithoutSourceendpointNestedInput = {
-    create?: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput> | endpointCreateWithoutSourceendpointInput[] | endpointUncheckedCreateWithoutSourceendpointInput[]
-    connectOrCreate?: endpointCreateOrConnectWithoutSourceendpointInput | endpointCreateOrConnectWithoutSourceendpointInput[]
-    upsert?: endpointUpsertWithWhereUniqueWithoutSourceendpointInput | endpointUpsertWithWhereUniqueWithoutSourceendpointInput[]
-    createMany?: endpointCreateManySourceendpointInputEnvelope
+  export type endpointUncheckedUpdateManyWithoutTargetendpointNestedInput = {
+    create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput> | endpointCreateWithoutTargetendpointInput[] | endpointUncheckedCreateWithoutTargetendpointInput[]
+    connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput | endpointCreateOrConnectWithoutTargetendpointInput[]
+    upsert?: endpointUpsertWithWhereUniqueWithoutTargetendpointInput | endpointUpsertWithWhereUniqueWithoutTargetendpointInput[]
+    createMany?: endpointCreateManyTargetendpointInputEnvelope
     set?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
     disconnect?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
     delete?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
     connect?: endpointWhereUniqueInput | endpointWhereUniqueInput[]
-    update?: endpointUpdateWithWhereUniqueWithoutSourceendpointInput | endpointUpdateWithWhereUniqueWithoutSourceendpointInput[]
-    updateMany?: endpointUpdateManyWithWhereWithoutSourceendpointInput | endpointUpdateManyWithWhereWithoutSourceendpointInput[]
+    update?: endpointUpdateWithWhereUniqueWithoutTargetendpointInput | endpointUpdateWithWhereUniqueWithoutTargetendpointInput[]
+    updateMany?: endpointUpdateManyWithWhereWithoutTargetendpointInput | endpointUpdateManyWithWhereWithoutTargetendpointInput[]
     deleteMany?: endpointScalarWhereInput | endpointScalarWhereInput[]
   }
 
@@ -15816,8 +15816,8 @@ export namespace Prisma {
     method: string
     path: string
     description?: string | null
-    sourceendpoint?: endpointCreateNestedOneWithoutTargetendpointInput
-    targetendpoint?: endpointCreateNestedManyWithoutSourceendpointInput
+    targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
+    sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
   }
 
@@ -15828,7 +15828,7 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
-    targetendpoint?: endpointUncheckedCreateNestedManyWithoutSourceendpointInput
+    sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
   }
 
@@ -15952,18 +15952,18 @@ export namespace Prisma {
     create: XOR<apiCreateWithoutEndpointsInput, apiUncheckedCreateWithoutEndpointsInput>
   }
 
-  export type endpointCreateWithoutTargetendpointInput = {
+  export type endpointCreateWithoutSourceendpointInput = {
     id?: string
     name: string
     method: string
     path: string
     description?: string | null
     api: apiCreateNestedOneWithoutEndpointsInput
-    sourceendpoint?: endpointCreateNestedOneWithoutTargetendpointInput
+    targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
   }
 
-  export type endpointUncheckedCreateWithoutTargetendpointInput = {
+  export type endpointUncheckedCreateWithoutSourceendpointInput = {
     id?: string
     name: string
     apiId: string
@@ -15974,40 +15974,40 @@ export namespace Prisma {
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
   }
 
-  export type endpointCreateOrConnectWithoutTargetendpointInput = {
+  export type endpointCreateOrConnectWithoutSourceendpointInput = {
     where: endpointWhereUniqueInput
-    create: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput>
+    create: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput>
   }
 
-  export type endpointCreateWithoutSourceendpointInput = {
+  export type endpointCreateWithoutTargetendpointInput = {
     id?: string
     name: string
     method: string
     path: string
     description?: string | null
     api: apiCreateNestedOneWithoutEndpointsInput
-    targetendpoint?: endpointCreateNestedManyWithoutSourceendpointInput
+    sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
   }
 
-  export type endpointUncheckedCreateWithoutSourceendpointInput = {
+  export type endpointUncheckedCreateWithoutTargetendpointInput = {
     id?: string
     name: string
     apiId: string
     method: string
     path: string
     description?: string | null
-    targetendpoint?: endpointUncheckedCreateNestedManyWithoutSourceendpointInput
+    sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
   }
 
-  export type endpointCreateOrConnectWithoutSourceendpointInput = {
+  export type endpointCreateOrConnectWithoutTargetendpointInput = {
     where: endpointWhereUniqueInput
-    create: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput>
+    create: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput>
   }
 
-  export type endpointCreateManySourceendpointInputEnvelope = {
-    data: endpointCreateManySourceendpointInput | endpointCreateManySourceendpointInput[]
+  export type endpointCreateManyTargetendpointInputEnvelope = {
+    data: endpointCreateManyTargetendpointInput | endpointCreateManyTargetendpointInput[]
     skipDuplicates?: boolean
   }
 
@@ -16064,29 +16064,29 @@ export namespace Prisma {
     apiAuth?: apiAuthUncheckedUpdateOneWithoutApiNestedInput
   }
 
-  export type endpointUpsertWithoutTargetendpointInput = {
-    update: XOR<endpointUpdateWithoutTargetendpointInput, endpointUncheckedUpdateWithoutTargetendpointInput>
-    create: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput>
+  export type endpointUpsertWithoutSourceendpointInput = {
+    update: XOR<endpointUpdateWithoutSourceendpointInput, endpointUncheckedUpdateWithoutSourceendpointInput>
+    create: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput>
     where?: endpointWhereInput
   }
 
-  export type endpointUpdateToOneWithWhereWithoutTargetendpointInput = {
+  export type endpointUpdateToOneWithWhereWithoutSourceendpointInput = {
     where?: endpointWhereInput
-    data: XOR<endpointUpdateWithoutTargetendpointInput, endpointUncheckedUpdateWithoutTargetendpointInput>
+    data: XOR<endpointUpdateWithoutSourceendpointInput, endpointUncheckedUpdateWithoutSourceendpointInput>
   }
 
-  export type endpointUpdateWithoutTargetendpointInput = {
+  export type endpointUpdateWithoutSourceendpointInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
-    sourceendpoint?: endpointUpdateOneWithoutTargetendpointNestedInput
+    targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
   }
 
-  export type endpointUncheckedUpdateWithoutTargetendpointInput = {
+  export type endpointUncheckedUpdateWithoutSourceendpointInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     apiId?: StringFieldUpdateOperationsInput | string
@@ -16097,20 +16097,20 @@ export namespace Prisma {
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
-  export type endpointUpsertWithWhereUniqueWithoutSourceendpointInput = {
+  export type endpointUpsertWithWhereUniqueWithoutTargetendpointInput = {
     where: endpointWhereUniqueInput
-    update: XOR<endpointUpdateWithoutSourceendpointInput, endpointUncheckedUpdateWithoutSourceendpointInput>
-    create: XOR<endpointCreateWithoutSourceendpointInput, endpointUncheckedCreateWithoutSourceendpointInput>
+    update: XOR<endpointUpdateWithoutTargetendpointInput, endpointUncheckedUpdateWithoutTargetendpointInput>
+    create: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput>
   }
 
-  export type endpointUpdateWithWhereUniqueWithoutSourceendpointInput = {
+  export type endpointUpdateWithWhereUniqueWithoutTargetendpointInput = {
     where: endpointWhereUniqueInput
-    data: XOR<endpointUpdateWithoutSourceendpointInput, endpointUncheckedUpdateWithoutSourceendpointInput>
+    data: XOR<endpointUpdateWithoutTargetendpointInput, endpointUncheckedUpdateWithoutTargetendpointInput>
   }
 
-  export type endpointUpdateManyWithWhereWithoutSourceendpointInput = {
+  export type endpointUpdateManyWithWhereWithoutTargetendpointInput = {
     where: endpointScalarWhereInput
-    data: XOR<endpointUpdateManyMutationInput, endpointUncheckedUpdateManyWithoutSourceendpointInput>
+    data: XOR<endpointUpdateManyMutationInput, endpointUncheckedUpdateManyWithoutTargetendpointInput>
   }
 
   export type mappingUpsertWithWhereUniqueWithoutEndpointInput = {
@@ -16147,8 +16147,8 @@ export namespace Prisma {
     path: string
     description?: string | null
     api: apiCreateNestedOneWithoutEndpointsInput
-    sourceendpoint?: endpointCreateNestedOneWithoutTargetendpointInput
-    targetendpoint?: endpointCreateNestedManyWithoutSourceendpointInput
+    targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
+    sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
   }
 
   export type endpointUncheckedCreateWithoutMappingInput = {
@@ -16159,7 +16159,7 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
-    targetendpoint?: endpointUncheckedCreateNestedManyWithoutSourceendpointInput
+    sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
   }
 
   export type endpointCreateOrConnectWithoutMappingInput = {
@@ -16185,8 +16185,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
-    sourceendpoint?: endpointUpdateOneWithoutTargetendpointNestedInput
-    targetendpoint?: endpointUpdateManyWithoutSourceendpointNestedInput
+    targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
   }
 
   export type endpointUncheckedUpdateWithoutMappingInput = {
@@ -16197,7 +16197,7 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    targetendpoint?: endpointUncheckedUpdateManyWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
   }
 
   export type apiCreateWithoutApiAuthInput = {
@@ -16677,8 +16677,8 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    sourceendpoint?: endpointUpdateOneWithoutTargetendpointNestedInput
-    targetendpoint?: endpointUpdateManyWithoutSourceendpointNestedInput
+    targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
   }
 
@@ -16689,7 +16689,7 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    targetendpoint?: endpointUncheckedUpdateManyWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
@@ -16702,7 +16702,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type endpointCreateManySourceendpointInput = {
+  export type endpointCreateManyTargetendpointInput = {
     id?: string
     name: string
     apiId: string
@@ -16718,29 +16718,29 @@ export namespace Prisma {
     targetField: string
   }
 
-  export type endpointUpdateWithoutSourceendpointInput = {
+  export type endpointUpdateWithoutTargetendpointInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
-    targetendpoint?: endpointUpdateManyWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
   }
 
-  export type endpointUncheckedUpdateWithoutSourceendpointInput = {
+  export type endpointUncheckedUpdateWithoutTargetendpointInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     apiId?: StringFieldUpdateOperationsInput | string
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    targetendpoint?: endpointUncheckedUpdateManyWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
-  export type endpointUncheckedUpdateManyWithoutSourceendpointInput = {
+  export type endpointUncheckedUpdateManyWithoutTargetendpointInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     apiId?: StringFieldUpdateOperationsInput | string
