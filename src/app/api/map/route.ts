@@ -13,6 +13,7 @@ export async function POST(request: Request) {
 
         // Get the source object from the request body
         const sourceObject = await request.json();
+        console.log("Source Object:", sourceObject);
 
         // Fetch the source endpoint with its mappings and target endpoint
         const sourceEndpoint = await prisma.endpoint.findUnique({
