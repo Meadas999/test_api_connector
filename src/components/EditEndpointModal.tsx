@@ -97,6 +97,7 @@ export default function EditEndpointModal({ endpoint, onUpdate }: EditEndpointMo
 
     // Update the endpoint in the database
     try {
+      console.log("Updating endpoint:", updatedEndpoint);
       const response = await fetch(`/api/endpoints/${endpoint.id}`, {
         method: 'PUT',
         headers: {

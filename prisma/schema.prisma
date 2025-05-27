@@ -38,9 +38,9 @@ model endpoint {
   apiId            String    
   method           String
   path             String
-  sourceendpoint   endpoint? @relation("EndpointToTarget")
-  targetendpoint   endpoint? @relation("EndpointToTarget", fields: [targetendpointId], references: [id])
-  targetendpointId String?   @unique
+  sourceendpoint   endpoint? @relation("EndpointToTarget", fields: [targetendpointId], references: [id])
+  targetendpoint   endpoint[] @relation("EndpointToTarget")
+  targetendpointId String?   
   description      String?
   mapping  mapping[]
   

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect,use } from 'react';
 import styles from "@/app/page.module.css";
 import ApplicationsTable from "@/components/ApplicationsTable";
 import CreateApiModal from "@/components/CreateApiModal";
@@ -16,7 +16,7 @@ type Api = {
   endpointCount: number;
 };
 
-export default async function Page({
+export default function Page({
   params,
 }: {
   params: Promise< { id: string }>
@@ -24,7 +24,7 @@ export default async function Page({
   const [apis, setApis] = useState<Api[]>([]);
   const [loading, setLoading] = useState(true);
   const [companyName, setCompanyName] = useState('');
-  const { id } = await params;
+  const { id } =  use(params);
 
   useEffect(() => {
     fetchCompanyAndApis();

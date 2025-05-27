@@ -7,17 +7,17 @@ export async function PUT(
     { params }: { params: Promise<{ id: string } >}
 ) {
     try {
-        const id = await params;
+        const { id } = await params;
         const body = await request.json();
 
         const updatedEndpoint = await prisma.endpoint.update({
-            where: id ,
+            where: { id: id }, 
             data: {
                 name: body.name,
                 description: body.description,
                 method: body.method,
                 path: body.path,
-                targetendpointId: body.targetendpointId
+                targetendpointId: body.targetendpointId || null, // Allow null for targetendpointId
             },
         });
 

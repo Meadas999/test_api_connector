@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import styles from "@/app/page.module.css";
 import EndpointsTable from "@/components/EndpointsTable";
 
@@ -12,14 +12,15 @@ type EndpointType = {
   targetendpointId: string | null;
 };
 
-export default async function Page({
+export default  function Page({
   params,
 }: {
   params: Promise <{ id: string }>
 }) {
+    const {id} =  use(params);
+
   const [endpoints, setEndpoints] = useState<EndpointType[]>([]);
   const [loading, setLoading] = useState(true);
-  const {id} = await params;
   
   
   useEffect(() => {
@@ -57,7 +58,7 @@ export default async function Page({
       <main className={styles.main}>
         <h1>Configured endpoints</h1>
         <p>List of endpoints which can be mapped.</p>
-        <EndpointsTable endpoints={endpoints} apiId={(await params).id} />
+        <EndpointsTable endpoints={endpoints} apiId={id} />
       </main>
     </div>
   );

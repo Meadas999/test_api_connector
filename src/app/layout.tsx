@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import UpperNavBar from "../components/UpperNavBar";
+import Script from "next/script";
+
 
 const geistSans = localFont({
   src: [
@@ -45,7 +47,29 @@ export default function RootLayout({
   console.log(children)
   return (
     <html lang="en" >
-      
+      <Script id="datadog-rum">
+           {`
+             (function(h,o,u,n,d) {
+               h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+               d=o.createElement(u);d.async=1;d.src=n
+               n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+             })(window,document,'script','https://www.datadoghq-browser-agent.com/us5/v6/datadog-rum.js','DD_RUM')
+             window.DD_RUM.onReady(function() {
+               window.DD_RUM.init({
+                 clientToken: 'pubad83678519c181e89f91f99a93b8b697',
+                 applicationId: 'ff4d0103-79c3-4136-82ce-71b1eae533f5',
+                 site: 'us5.datadoghq.com',
+                 service: 'api_connector',
+                 env: 'dev',
+                 // Specify a version number to identify the deployed version of your application in Datadog
+                 // version: '0.1.0',
+                 sessionSampleRate: 100,
+                 sessionReplaySampleRate: 20,
+                 defaultPrivacyLevel: 'mask-user-input',
+               });
+             })
+           `}
+         </Script>
       <body className={`${geistSans.variable} ${geistMono.variable}` }>
       <UpperNavBar />
         {children}
