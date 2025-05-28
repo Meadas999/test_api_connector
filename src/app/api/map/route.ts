@@ -84,10 +84,10 @@ export async function POST(request: Request) {
         }
 
         // Send the transformed object to the target endpoint
-        const targetUrl = (sourceEndpoint.targetendpoint?.api.baseurl ?? "") + (sourceEndpoint.targetendpoint?.path ?? "");  // Changed from array access
+        const targetUrl = (sourceEndpoint.targetendpoint.api.baseurl ?? "") + (sourceEndpoint.targetendpoint.path ?? "");  // Access first element of the array
         console.log("Target URL:", targetUrl);
         console.log("Transformed Object:", transformedObject);
-        const targetMethod = sourceEndpoint.targetendpoint?.method;  // Changed from array access
+        const targetMethod = sourceEndpoint.targetendpoint.method;  // Access first element of the array
         console.log("Target Method:", targetMethod);
         const response = await fetch(targetUrl, {
             method: targetMethod,
