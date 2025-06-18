@@ -32,18 +32,57 @@ model api {
   endpoints   endpoint[]
 }
 
+model apiLog {
+  id           String   @id @default(cuid())
+  endpointId   String
+  endpoint     endpoint @relation(fields: [endpointId], references: [id], onDelete: Cascade)
+  status       String // "success" or "error"
+  method       String
+  requestBody  Json?
+  responseBody Json?
+  errorMessage String?
+  statusCode   Int?
+  createdAt    DateTime @default(now())
+}
+
+model WebhookLog {
+  id           String    @id @default(cuid())
+  endpointId   String // Connect to specific endpoint
+  endpoint     endpoint  @relation(fields: [endpointId], references: [id], onDelete: Cascade)
+  type         String // webhook type (e.g., 'object_created')
+  method       String // HTTP method (POST, PUT, etc.)
+  url          String // The webhook URL that was called
+  status       String // 'received', 'processed', 'failed', 'success', 'error'
+  statusCode   Int? // HTTP status code
+  requestBody  Json? // The webhook payload data
+  responseBody Json? // Response data if processing was successful
+  errorMessage String? // Error message if processing failed
+  responseTime Int? // Response time in milliseconds
+  success      Boolean   @default(false) // Whether the webhook was successful
+  timestamp    DateTime  @default(now()) // When the webhook was received
+  processedAt  DateTime? // When the webhook was processed
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("webhook_logs")
+}
+
 model endpoint {
-  id               String     @id @default(cuid())
+  id               String       @id @default(cuid())
   name             String
-  api              api        @relation(fields: [apiId], references: [id], onDelete: Cascade)
+  api              api          @relation(fields: [apiId], references: [id], onDelete: Cascade)
   apiId            String
   method           String
   path             String
-  targetendpoint   endpoint?  @relation("EndpointToTarget", fields: [targetendpointId], references: [id])
-  sourceendpoint   endpoint[] @relation("EndpointToTarget")
+  targetendpoint   endpoint?    @relation("EndpointToTarget", fields: [targetendpointId], references: [id])
+  sourceendpoint   endpoint[]   @relation("EndpointToTarget")
   targetendpointId String?
   description      String?
   mapping          mapping[]
+  sourceExmpObj    Json?
+  targetExmpObj    Json?
+  logs             apiLog[]
+  webhookLogs      WebhookLog[]
 }
 
 model mapping {

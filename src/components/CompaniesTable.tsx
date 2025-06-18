@@ -1,46 +1,51 @@
 import Paper from "@mui/material/Paper";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { prisma } from "@/app/prisma";
-import { act } from "react";
-import DeleteIcon from '@mui/icons-material/Delete';
-
 import Button from "@mui/material/Button";
 import { redirect } from "next/navigation";
 import IconButton from "@mui/material/IconButton";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type CompaniesTableProps = {
-  companies: { id: string; name: string }[]; // Define the type for companies
-    onDelete: (id: string) => void;
-
+  companies: { id: string; name: string }[];
+  onDelete: (id: string) => void;
 };
 
 export default function CompaniesTable({ companies, onDelete }: CompaniesTableProps) {
   const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>, row: { id: string; company: string }) => {
     e.stopPropagation();
-    redirect(`/companies/${row.id}`); // Redirect to the company details page
-    //do whatever you want with the row
+    redirect(`/companies/${row.id}`);
   };
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "company", headerName: "Company", width: 130 },
-    { field: "actions", headerName: "Actions", width: 160, renderCell: (params) => {
-      return (
-        <>
-          <Button
-            onClick={() => redirect(`/companies/${params.row.id}`)}
-            variant="contained"
-            sx={{ marginRight: 1 }}
-          >
-            View
-          </Button>
-          
-          <IconButton aria-label="delete" onClick={() => onDelete(params.row.id)}>
-                  <DeleteIcon />
-                </IconButton>
-        </>
-      );
-    }},
+    { field: "company", headerName: "Company", flex: 1, minWidth: 200 }, // Use flex for responsive width
+    { 
+      field: "actions", 
+      headerName: "Actions", 
+      width: 160, 
+      renderCell: (params) => {
+        return (
+          <>
+            <Button
+              onClick={() => redirect(`/companies/${params.row.id}`)}
+              variant="contained"
+              size="small"
+              sx={{ marginRight: 1 }}
+            >
+              View
+            </Button>
+            
+            <IconButton 
+              aria-label="delete" 
+              onClick={() => onDelete(params.row.id)}
+              size="small"
+            >
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          </>
+        );
+      }
+    },
   ];
 
   const rows = companies.map((company) => ({
@@ -48,17 +53,17 @@ export default function CompaniesTable({ companies, onDelete }: CompaniesTablePr
     company: company.name,
   }));
 
-  // Set the initial state for pagination
-  const paginationModel = { page: 0, pageSize: 10 };
+  const paginationModel = { page: 0, pageSize: 15 }; // Increased page size
 
   return (
-    <Paper sx={{ height: 400, width: "100%" }}>
+    <Paper sx={{ height: '70vh', width: "100%" }}> {/* Use viewport height */}
       <DataGrid
         rows={rows}
         columns={columns}
         initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
+        pageSizeOptions={[10, 15, 25, 50]}
         sx={{ border: 0 }}
+        autoHeight={false} // Disable auto height to use fixed height
       />
     </Paper>
   );

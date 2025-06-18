@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useEffect,use } from 'react';
+import { useState, useEffect, use } from 'react';
 import styles from "@/app/page.module.css";
 import ApplicationsTable from "@/components/ApplicationsTable";
 import CreateApiModal from "@/components/CreateApiModal";
+import Breadcrumb from "@/components/Breadcrumb";
 import { notFound } from 'next/navigation';
+import { Box, Typography, Container } from '@mui/material';
 
 type Api = {
   id: string;
@@ -19,12 +21,17 @@ type Api = {
 export default function Page({
   params,
 }: {
-  params: Promise< { id: string }>
+  params: Promise<{ id: string }>
 }) {
   const [apis, setApis] = useState<Api[]>([]);
   const [loading, setLoading] = useState(true);
   const [companyName, setCompanyName] = useState('');
-  const { id } =  use(params);
+  const { id } = use(params);
+
+  const breadcrumbItems = [
+    { label: 'Companies', href: '/companies' },
+    { label: companyName || 'Loading...', current: true }
+  ];
 
   useEffect(() => {
     fetchCompanyAndApis();
@@ -52,8 +59,7 @@ export default function Page({
       const apisData = await apisResponse.json();
       
       // Format the APIs for the table
-       const formattedApis = apisData.map((api: any) => {
-        // Safely extract endpoint target names with optional chaining
+      const formattedApis = apisData.map((api: any) => {
         const connections = api.endpoints?.filter((e: any) => e.targetendpoint)
           .map((e: any) => e.targetendpoint?.api?.name)
           .filter(Boolean)
@@ -79,7 +85,6 @@ export default function Page({
   };
 
   const handleCreateApi = (newApi: any) => {
-    // Add the new API to the list
     const formattedApi = {
       id: newApi.id,
       name: newApi.name,
@@ -99,7 +104,6 @@ export default function Page({
       });
       
       if (response.ok) {
-        // Remove the deleted API from the list
         setApis(apis.filter(api => api.id !== id));
       } else {
         console.error("Failed to delete API");
@@ -125,27 +129,44 @@ export default function Page({
   };
 
   if (loading) {
-    return <div className={styles.page}>Loading...</div>;
+    return (
+      <Container maxWidth={false} sx={{ py: 2 }}>
+        <div>Loading...</div>
+      </Container>
+    );
   }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h1>APIs for {companyName}</h1>
-          <CreateApiModal 
-            onCreate={handleCreateApi} 
-            companyId={id} 
-          />
-        </div>
-        <p>Manage APIs for this company</p>
-        
+    <Container maxWidth={false} sx={{ py: 2 }}>
+      <Breadcrumb items={breadcrumbItems} />
+      
+      <Box sx={{ 
+        display: "flex", 
+        justifyContent: "space-between", 
+        alignItems: "center",
+        mb: 3 
+      }}>
+        <Box>
+          <Typography variant="h4" component="h1" gutterBottom>
+            APIs for {companyName}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            Manage APIs and their endpoints for this company.
+          </Typography>
+        </Box>
+        <CreateApiModal 
+          onCreate={handleCreateApi} 
+          companyId={id} 
+        />
+      </Box>
+      
+      <Box className="table-container">
         <ApplicationsTable 
           apis={apis} 
           onDelete={handleDeleteApi}
           onUpdate={handleUpdateApi}
         />
-      </main>
-    </div>
+      </Box>
+    </Container>
   );
 }

@@ -35,6 +35,35 @@ a {
   text-decoration: none;
 }
 
+/* Updated page layout for better table space usage */
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  min-height: 100vh;
+  padding: 20px; /* Reduced from 100px */
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-geist-sans);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Reduced from 32px */
+  max-width: 100%;
+}
+
+/* Make tables take more screen space */
+.table-container {
+  flex: 1;
+  min-height: 600px; /* Ensure minimum height */
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

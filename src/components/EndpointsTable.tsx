@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react'
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 import CreateEndpointModal from "./CreateEndpointModal";
 import EditEndpointModal from "./EditEndpointModal";
 import EndpointTabs from "./EndpointTabs";
@@ -28,13 +29,15 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 900,
+  width: '90vw',  // 80% of viewport width
+  height: '90vh', // 80% of viewport height
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
-  maxHeight: '80vh',
-  overflow: 'auto'
+  borderRadius: 2,
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column'
 };
 
 function ChildModal({ endpointId }: { endpointId: string }) {
@@ -50,16 +53,54 @@ function ChildModal({ endpointId }: { endpointId: string }) {
 
   return (
     <React.Fragment>
-      <Button onClick={handleOpen} variant="contained" size="small">Open Child Modal</Button>
+      <Button onClick={handleOpen} variant="contained" size="small">
+        Configure
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
+        aria-labelledby="endpoint-configuration-modal"
+        aria-describedby="endpoint-configuration-tabs"
       >
         <Box sx={style}>
-          <EndpointTabs endpointId={endpointId} />
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          {/* Modal Header */}
+          <Box sx={{ 
+            p: 2, 
+            borderBottom: '1px solid #e0e0e0',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            backgroundColor: '#f5f5f5'
+          }}>
+            <h2 id="endpoint-configuration-modal" style={{ margin: 0 }}>
+              Endpoint Configuration
+            </h2>
+            <IconButton onClick={handleClose} size="small">
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          
+          {/* Modal Content */}
+          <Box sx={{ 
+            flex: 1, 
+            overflow: 'auto',
+            p: 0  // Remove padding since EndpointTabs has its own padding
+          }}>
+            <EndpointTabs endpointId={endpointId} />
+          </Box>
+          
+          {/* Modal Footer (Optional) */}
+          <Box sx={{ 
+            p: 2, 
+            borderTop: '1px solid #e0e0e0',
+            backgroundColor: '#f5f5f5',
+            display: 'flex',
+            justifyContent: 'flex-end'
+          }}>
+            <Button onClick={handleClose} variant="outlined">
+              Close
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </React.Fragment>

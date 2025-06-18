@@ -24,6 +24,16 @@ export type company = $Result.DefaultSelection<Prisma.$companyPayload>
  */
 export type api = $Result.DefaultSelection<Prisma.$apiPayload>
 /**
+ * Model apiLog
+ * 
+ */
+export type apiLog = $Result.DefaultSelection<Prisma.$apiLogPayload>
+/**
+ * Model WebhookLog
+ * 
+ */
+export type WebhookLog = $Result.DefaultSelection<Prisma.$WebhookLogPayload>
+/**
  * Model endpoint
  * 
  */
@@ -208,6 +218,26 @@ export class PrismaClient<
     * ```
     */
   get api(): Prisma.apiDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.apiLog`: Exposes CRUD operations for the **apiLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApiLogs
+    * const apiLogs = await prisma.apiLog.findMany()
+    * ```
+    */
+  get apiLog(): Prisma.apiLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.webhookLog`: Exposes CRUD operations for the **WebhookLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WebhookLogs
+    * const webhookLogs = await prisma.webhookLog.findMany()
+    * ```
+    */
+  get webhookLog(): Prisma.WebhookLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.endpoint`: Exposes CRUD operations for the **endpoint** model.
@@ -730,6 +760,8 @@ export namespace Prisma {
   export const ModelName: {
     company: 'company',
     api: 'api',
+    apiLog: 'apiLog',
+    WebhookLog: 'WebhookLog',
     endpoint: 'endpoint',
     mapping: 'mapping',
     apiAuth: 'apiAuth',
@@ -756,7 +788,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "company" | "api" | "endpoint" | "mapping" | "apiAuth" | "user" | "account" | "session" | "verificationToken" | "authenticator"
+      modelProps: "company" | "api" | "apiLog" | "webhookLog" | "endpoint" | "mapping" | "apiAuth" | "user" | "account" | "session" | "verificationToken" | "authenticator"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -905,6 +937,154 @@ export namespace Prisma {
           count: {
             args: Prisma.apiCountArgs<ExtArgs>
             result: $Utils.Optional<ApiCountAggregateOutputType> | number
+          }
+        }
+      }
+      apiLog: {
+        payload: Prisma.$apiLogPayload<ExtArgs>
+        fields: Prisma.apiLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.apiLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.apiLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>
+          }
+          findFirst: {
+            args: Prisma.apiLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.apiLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>
+          }
+          findMany: {
+            args: Prisma.apiLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>[]
+          }
+          create: {
+            args: Prisma.apiLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>
+          }
+          createMany: {
+            args: Prisma.apiLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.apiLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>[]
+          }
+          delete: {
+            args: Prisma.apiLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>
+          }
+          update: {
+            args: Prisma.apiLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.apiLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.apiLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.apiLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.apiLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apiLogPayload>
+          }
+          aggregate: {
+            args: Prisma.ApiLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApiLog>
+          }
+          groupBy: {
+            args: Prisma.apiLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApiLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.apiLogCountArgs<ExtArgs>
+            result: $Utils.Optional<ApiLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      WebhookLog: {
+        payload: Prisma.$WebhookLogPayload<ExtArgs>
+        fields: Prisma.WebhookLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WebhookLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WebhookLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>
+          }
+          findFirst: {
+            args: Prisma.WebhookLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WebhookLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>
+          }
+          findMany: {
+            args: Prisma.WebhookLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>[]
+          }
+          create: {
+            args: Prisma.WebhookLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>
+          }
+          createMany: {
+            args: Prisma.WebhookLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WebhookLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>[]
+          }
+          delete: {
+            args: Prisma.WebhookLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>
+          }
+          update: {
+            args: Prisma.WebhookLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.WebhookLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WebhookLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WebhookLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.WebhookLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WebhookLogPayload>
+          }
+          aggregate: {
+            args: Prisma.WebhookLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWebhookLog>
+          }
+          groupBy: {
+            args: Prisma.WebhookLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WebhookLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WebhookLogCountArgs<ExtArgs>
+            result: $Utils.Optional<WebhookLogCountAggregateOutputType> | number
           }
         }
       }
@@ -1586,6 +1766,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     company?: companyOmit
     api?: apiOmit
+    apiLog?: apiLogOmit
+    webhookLog?: WebhookLogOmit
     endpoint?: endpointOmit
     mapping?: mappingOmit
     apiAuth?: apiAuthOmit
@@ -1752,11 +1934,15 @@ export namespace Prisma {
   export type EndpointCountOutputType = {
     sourceendpoint: number
     mapping: number
+    logs: number
+    webhookLogs: number
   }
 
   export type EndpointCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sourceendpoint?: boolean | EndpointCountOutputTypeCountSourceendpointArgs
     mapping?: boolean | EndpointCountOutputTypeCountMappingArgs
+    logs?: boolean | EndpointCountOutputTypeCountLogsArgs
+    webhookLogs?: boolean | EndpointCountOutputTypeCountWebhookLogsArgs
   }
 
   // Custom InputTypes
@@ -1782,6 +1968,20 @@ export namespace Prisma {
    */
   export type EndpointCountOutputTypeCountMappingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: mappingWhereInput
+  }
+
+  /**
+   * EndpointCountOutputType without action
+   */
+  export type EndpointCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: apiLogWhereInput
+  }
+
+  /**
+   * EndpointCountOutputType without action
+   */
+  export type EndpointCountOutputTypeCountWebhookLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WebhookLogWhereInput
   }
 
 
@@ -3981,6 +4181,2373 @@ export namespace Prisma {
 
 
   /**
+   * Model apiLog
+   */
+
+  export type AggregateApiLog = {
+    _count: ApiLogCountAggregateOutputType | null
+    _avg: ApiLogAvgAggregateOutputType | null
+    _sum: ApiLogSumAggregateOutputType | null
+    _min: ApiLogMinAggregateOutputType | null
+    _max: ApiLogMaxAggregateOutputType | null
+  }
+
+  export type ApiLogAvgAggregateOutputType = {
+    statusCode: number | null
+  }
+
+  export type ApiLogSumAggregateOutputType = {
+    statusCode: number | null
+  }
+
+  export type ApiLogMinAggregateOutputType = {
+    id: string | null
+    endpointId: string | null
+    status: string | null
+    method: string | null
+    errorMessage: string | null
+    statusCode: number | null
+    createdAt: Date | null
+  }
+
+  export type ApiLogMaxAggregateOutputType = {
+    id: string | null
+    endpointId: string | null
+    status: string | null
+    method: string | null
+    errorMessage: string | null
+    statusCode: number | null
+    createdAt: Date | null
+  }
+
+  export type ApiLogCountAggregateOutputType = {
+    id: number
+    endpointId: number
+    status: number
+    method: number
+    requestBody: number
+    responseBody: number
+    errorMessage: number
+    statusCode: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ApiLogAvgAggregateInputType = {
+    statusCode?: true
+  }
+
+  export type ApiLogSumAggregateInputType = {
+    statusCode?: true
+  }
+
+  export type ApiLogMinAggregateInputType = {
+    id?: true
+    endpointId?: true
+    status?: true
+    method?: true
+    errorMessage?: true
+    statusCode?: true
+    createdAt?: true
+  }
+
+  export type ApiLogMaxAggregateInputType = {
+    id?: true
+    endpointId?: true
+    status?: true
+    method?: true
+    errorMessage?: true
+    statusCode?: true
+    createdAt?: true
+  }
+
+  export type ApiLogCountAggregateInputType = {
+    id?: true
+    endpointId?: true
+    status?: true
+    method?: true
+    requestBody?: true
+    responseBody?: true
+    errorMessage?: true
+    statusCode?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ApiLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which apiLog to aggregate.
+     */
+    where?: apiLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apiLogs to fetch.
+     */
+    orderBy?: apiLogOrderByWithRelationInput | apiLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: apiLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apiLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apiLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned apiLogs
+    **/
+    _count?: true | ApiLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApiLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApiLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApiLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApiLogMaxAggregateInputType
+  }
+
+  export type GetApiLogAggregateType<T extends ApiLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateApiLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApiLog[P]>
+      : GetScalarType<T[P], AggregateApiLog[P]>
+  }
+
+
+
+
+  export type apiLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: apiLogWhereInput
+    orderBy?: apiLogOrderByWithAggregationInput | apiLogOrderByWithAggregationInput[]
+    by: ApiLogScalarFieldEnum[] | ApiLogScalarFieldEnum
+    having?: apiLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApiLogCountAggregateInputType | true
+    _avg?: ApiLogAvgAggregateInputType
+    _sum?: ApiLogSumAggregateInputType
+    _min?: ApiLogMinAggregateInputType
+    _max?: ApiLogMaxAggregateInputType
+  }
+
+  export type ApiLogGroupByOutputType = {
+    id: string
+    endpointId: string
+    status: string
+    method: string
+    requestBody: JsonValue | null
+    responseBody: JsonValue | null
+    errorMessage: string | null
+    statusCode: number | null
+    createdAt: Date
+    _count: ApiLogCountAggregateOutputType | null
+    _avg: ApiLogAvgAggregateOutputType | null
+    _sum: ApiLogSumAggregateOutputType | null
+    _min: ApiLogMinAggregateOutputType | null
+    _max: ApiLogMaxAggregateOutputType | null
+  }
+
+  type GetApiLogGroupByPayload<T extends apiLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApiLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApiLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApiLogGroupByOutputType[P]>
+            : GetScalarType<T[P], ApiLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type apiLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    endpointId?: boolean
+    status?: boolean
+    method?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    statusCode?: boolean
+    createdAt?: boolean
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiLog"]>
+
+  export type apiLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    endpointId?: boolean
+    status?: boolean
+    method?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    statusCode?: boolean
+    createdAt?: boolean
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiLog"]>
+
+  export type apiLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    endpointId?: boolean
+    status?: boolean
+    method?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    statusCode?: boolean
+    createdAt?: boolean
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["apiLog"]>
+
+  export type apiLogSelectScalar = {
+    id?: boolean
+    endpointId?: boolean
+    status?: boolean
+    method?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    statusCode?: boolean
+    createdAt?: boolean
+  }
+
+  export type apiLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "endpointId" | "status" | "method" | "requestBody" | "responseBody" | "errorMessage" | "statusCode" | "createdAt", ExtArgs["result"]["apiLog"]>
+  export type apiLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }
+  export type apiLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }
+  export type apiLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }
+
+  export type $apiLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "apiLog"
+    objects: {
+      endpoint: Prisma.$endpointPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      endpointId: string
+      status: string
+      method: string
+      requestBody: Prisma.JsonValue | null
+      responseBody: Prisma.JsonValue | null
+      errorMessage: string | null
+      statusCode: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["apiLog"]>
+    composites: {}
+  }
+
+  type apiLogGetPayload<S extends boolean | null | undefined | apiLogDefaultArgs> = $Result.GetResult<Prisma.$apiLogPayload, S>
+
+  type apiLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<apiLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApiLogCountAggregateInputType | true
+    }
+
+  export interface apiLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['apiLog'], meta: { name: 'apiLog' } }
+    /**
+     * Find zero or one ApiLog that matches the filter.
+     * @param {apiLogFindUniqueArgs} args - Arguments to find a ApiLog
+     * @example
+     * // Get one ApiLog
+     * const apiLog = await prisma.apiLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends apiLogFindUniqueArgs>(args: SelectSubset<T, apiLogFindUniqueArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApiLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {apiLogFindUniqueOrThrowArgs} args - Arguments to find a ApiLog
+     * @example
+     * // Get one ApiLog
+     * const apiLog = await prisma.apiLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends apiLogFindUniqueOrThrowArgs>(args: SelectSubset<T, apiLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apiLogFindFirstArgs} args - Arguments to find a ApiLog
+     * @example
+     * // Get one ApiLog
+     * const apiLog = await prisma.apiLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends apiLogFindFirstArgs>(args?: SelectSubset<T, apiLogFindFirstArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApiLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apiLogFindFirstOrThrowArgs} args - Arguments to find a ApiLog
+     * @example
+     * // Get one ApiLog
+     * const apiLog = await prisma.apiLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends apiLogFindFirstOrThrowArgs>(args?: SelectSubset<T, apiLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApiLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apiLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApiLogs
+     * const apiLogs = await prisma.apiLog.findMany()
+     * 
+     * // Get first 10 ApiLogs
+     * const apiLogs = await prisma.apiLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const apiLogWithIdOnly = await prisma.apiLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends apiLogFindManyArgs>(args?: SelectSubset<T, apiLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApiLog.
+     * @param {apiLogCreateArgs} args - Arguments to create a ApiLog.
+     * @example
+     * // Create one ApiLog
+     * const ApiLog = await prisma.apiLog.create({
+     *   data: {
+     *     // ... data to create a ApiLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends apiLogCreateArgs>(args: SelectSubset<T, apiLogCreateArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApiLogs.
+     * @param {apiLogCreateManyArgs} args - Arguments to create many ApiLogs.
+     * @example
+     * // Create many ApiLogs
+     * const apiLog = await prisma.apiLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends apiLogCreateManyArgs>(args?: SelectSubset<T, apiLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApiLogs and returns the data saved in the database.
+     * @param {apiLogCreateManyAndReturnArgs} args - Arguments to create many ApiLogs.
+     * @example
+     * // Create many ApiLogs
+     * const apiLog = await prisma.apiLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApiLogs and only return the `id`
+     * const apiLogWithIdOnly = await prisma.apiLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends apiLogCreateManyAndReturnArgs>(args?: SelectSubset<T, apiLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApiLog.
+     * @param {apiLogDeleteArgs} args - Arguments to delete one ApiLog.
+     * @example
+     * // Delete one ApiLog
+     * const ApiLog = await prisma.apiLog.delete({
+     *   where: {
+     *     // ... filter to delete one ApiLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends apiLogDeleteArgs>(args: SelectSubset<T, apiLogDeleteArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApiLog.
+     * @param {apiLogUpdateArgs} args - Arguments to update one ApiLog.
+     * @example
+     * // Update one ApiLog
+     * const apiLog = await prisma.apiLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends apiLogUpdateArgs>(args: SelectSubset<T, apiLogUpdateArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApiLogs.
+     * @param {apiLogDeleteManyArgs} args - Arguments to filter ApiLogs to delete.
+     * @example
+     * // Delete a few ApiLogs
+     * const { count } = await prisma.apiLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends apiLogDeleteManyArgs>(args?: SelectSubset<T, apiLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apiLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApiLogs
+     * const apiLog = await prisma.apiLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends apiLogUpdateManyArgs>(args: SelectSubset<T, apiLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApiLogs and returns the data updated in the database.
+     * @param {apiLogUpdateManyAndReturnArgs} args - Arguments to update many ApiLogs.
+     * @example
+     * // Update many ApiLogs
+     * const apiLog = await prisma.apiLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApiLogs and only return the `id`
+     * const apiLogWithIdOnly = await prisma.apiLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends apiLogUpdateManyAndReturnArgs>(args: SelectSubset<T, apiLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApiLog.
+     * @param {apiLogUpsertArgs} args - Arguments to update or create a ApiLog.
+     * @example
+     * // Update or create a ApiLog
+     * const apiLog = await prisma.apiLog.upsert({
+     *   create: {
+     *     // ... data to create a ApiLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApiLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends apiLogUpsertArgs>(args: SelectSubset<T, apiLogUpsertArgs<ExtArgs>>): Prisma__apiLogClient<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApiLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apiLogCountArgs} args - Arguments to filter ApiLogs to count.
+     * @example
+     * // Count the number of ApiLogs
+     * const count = await prisma.apiLog.count({
+     *   where: {
+     *     // ... the filter for the ApiLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends apiLogCountArgs>(
+      args?: Subset<T, apiLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApiLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApiLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApiLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApiLogAggregateArgs>(args: Subset<T, ApiLogAggregateArgs>): Prisma.PrismaPromise<GetApiLogAggregateType<T>>
+
+    /**
+     * Group by ApiLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apiLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends apiLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: apiLogGroupByArgs['orderBy'] }
+        : { orderBy?: apiLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, apiLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApiLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the apiLog model
+   */
+  readonly fields: apiLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for apiLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__apiLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    endpoint<T extends endpointDefaultArgs<ExtArgs> = {}>(args?: Subset<T, endpointDefaultArgs<ExtArgs>>): Prisma__endpointClient<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the apiLog model
+   */
+  interface apiLogFieldRefs {
+    readonly id: FieldRef<"apiLog", 'String'>
+    readonly endpointId: FieldRef<"apiLog", 'String'>
+    readonly status: FieldRef<"apiLog", 'String'>
+    readonly method: FieldRef<"apiLog", 'String'>
+    readonly requestBody: FieldRef<"apiLog", 'Json'>
+    readonly responseBody: FieldRef<"apiLog", 'Json'>
+    readonly errorMessage: FieldRef<"apiLog", 'String'>
+    readonly statusCode: FieldRef<"apiLog", 'Int'>
+    readonly createdAt: FieldRef<"apiLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * apiLog findUnique
+   */
+  export type apiLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * Filter, which apiLog to fetch.
+     */
+    where: apiLogWhereUniqueInput
+  }
+
+  /**
+   * apiLog findUniqueOrThrow
+   */
+  export type apiLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * Filter, which apiLog to fetch.
+     */
+    where: apiLogWhereUniqueInput
+  }
+
+  /**
+   * apiLog findFirst
+   */
+  export type apiLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * Filter, which apiLog to fetch.
+     */
+    where?: apiLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apiLogs to fetch.
+     */
+    orderBy?: apiLogOrderByWithRelationInput | apiLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for apiLogs.
+     */
+    cursor?: apiLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apiLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apiLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of apiLogs.
+     */
+    distinct?: ApiLogScalarFieldEnum | ApiLogScalarFieldEnum[]
+  }
+
+  /**
+   * apiLog findFirstOrThrow
+   */
+  export type apiLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * Filter, which apiLog to fetch.
+     */
+    where?: apiLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apiLogs to fetch.
+     */
+    orderBy?: apiLogOrderByWithRelationInput | apiLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for apiLogs.
+     */
+    cursor?: apiLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apiLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apiLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of apiLogs.
+     */
+    distinct?: ApiLogScalarFieldEnum | ApiLogScalarFieldEnum[]
+  }
+
+  /**
+   * apiLog findMany
+   */
+  export type apiLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * Filter, which apiLogs to fetch.
+     */
+    where?: apiLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apiLogs to fetch.
+     */
+    orderBy?: apiLogOrderByWithRelationInput | apiLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing apiLogs.
+     */
+    cursor?: apiLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apiLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apiLogs.
+     */
+    skip?: number
+    distinct?: ApiLogScalarFieldEnum | ApiLogScalarFieldEnum[]
+  }
+
+  /**
+   * apiLog create
+   */
+  export type apiLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a apiLog.
+     */
+    data: XOR<apiLogCreateInput, apiLogUncheckedCreateInput>
+  }
+
+  /**
+   * apiLog createMany
+   */
+  export type apiLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many apiLogs.
+     */
+    data: apiLogCreateManyInput | apiLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * apiLog createManyAndReturn
+   */
+  export type apiLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many apiLogs.
+     */
+    data: apiLogCreateManyInput | apiLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * apiLog update
+   */
+  export type apiLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a apiLog.
+     */
+    data: XOR<apiLogUpdateInput, apiLogUncheckedUpdateInput>
+    /**
+     * Choose, which apiLog to update.
+     */
+    where: apiLogWhereUniqueInput
+  }
+
+  /**
+   * apiLog updateMany
+   */
+  export type apiLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update apiLogs.
+     */
+    data: XOR<apiLogUpdateManyMutationInput, apiLogUncheckedUpdateManyInput>
+    /**
+     * Filter which apiLogs to update
+     */
+    where?: apiLogWhereInput
+    /**
+     * Limit how many apiLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * apiLog updateManyAndReturn
+   */
+  export type apiLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * The data used to update apiLogs.
+     */
+    data: XOR<apiLogUpdateManyMutationInput, apiLogUncheckedUpdateManyInput>
+    /**
+     * Filter which apiLogs to update
+     */
+    where?: apiLogWhereInput
+    /**
+     * Limit how many apiLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * apiLog upsert
+   */
+  export type apiLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the apiLog to update in case it exists.
+     */
+    where: apiLogWhereUniqueInput
+    /**
+     * In case the apiLog found by the `where` argument doesn't exist, create a new apiLog with this data.
+     */
+    create: XOR<apiLogCreateInput, apiLogUncheckedCreateInput>
+    /**
+     * In case the apiLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<apiLogUpdateInput, apiLogUncheckedUpdateInput>
+  }
+
+  /**
+   * apiLog delete
+   */
+  export type apiLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    /**
+     * Filter which apiLog to delete.
+     */
+    where: apiLogWhereUniqueInput
+  }
+
+  /**
+   * apiLog deleteMany
+   */
+  export type apiLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which apiLogs to delete
+     */
+    where?: apiLogWhereInput
+    /**
+     * Limit how many apiLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * apiLog without action
+   */
+  export type apiLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WebhookLog
+   */
+
+  export type AggregateWebhookLog = {
+    _count: WebhookLogCountAggregateOutputType | null
+    _avg: WebhookLogAvgAggregateOutputType | null
+    _sum: WebhookLogSumAggregateOutputType | null
+    _min: WebhookLogMinAggregateOutputType | null
+    _max: WebhookLogMaxAggregateOutputType | null
+  }
+
+  export type WebhookLogAvgAggregateOutputType = {
+    statusCode: number | null
+    responseTime: number | null
+  }
+
+  export type WebhookLogSumAggregateOutputType = {
+    statusCode: number | null
+    responseTime: number | null
+  }
+
+  export type WebhookLogMinAggregateOutputType = {
+    id: string | null
+    endpointId: string | null
+    type: string | null
+    method: string | null
+    url: string | null
+    status: string | null
+    statusCode: number | null
+    errorMessage: string | null
+    responseTime: number | null
+    success: boolean | null
+    timestamp: Date | null
+    processedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WebhookLogMaxAggregateOutputType = {
+    id: string | null
+    endpointId: string | null
+    type: string | null
+    method: string | null
+    url: string | null
+    status: string | null
+    statusCode: number | null
+    errorMessage: string | null
+    responseTime: number | null
+    success: boolean | null
+    timestamp: Date | null
+    processedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WebhookLogCountAggregateOutputType = {
+    id: number
+    endpointId: number
+    type: number
+    method: number
+    url: number
+    status: number
+    statusCode: number
+    requestBody: number
+    responseBody: number
+    errorMessage: number
+    responseTime: number
+    success: number
+    timestamp: number
+    processedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type WebhookLogAvgAggregateInputType = {
+    statusCode?: true
+    responseTime?: true
+  }
+
+  export type WebhookLogSumAggregateInputType = {
+    statusCode?: true
+    responseTime?: true
+  }
+
+  export type WebhookLogMinAggregateInputType = {
+    id?: true
+    endpointId?: true
+    type?: true
+    method?: true
+    url?: true
+    status?: true
+    statusCode?: true
+    errorMessage?: true
+    responseTime?: true
+    success?: true
+    timestamp?: true
+    processedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WebhookLogMaxAggregateInputType = {
+    id?: true
+    endpointId?: true
+    type?: true
+    method?: true
+    url?: true
+    status?: true
+    statusCode?: true
+    errorMessage?: true
+    responseTime?: true
+    success?: true
+    timestamp?: true
+    processedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WebhookLogCountAggregateInputType = {
+    id?: true
+    endpointId?: true
+    type?: true
+    method?: true
+    url?: true
+    status?: true
+    statusCode?: true
+    requestBody?: true
+    responseBody?: true
+    errorMessage?: true
+    responseTime?: true
+    success?: true
+    timestamp?: true
+    processedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type WebhookLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WebhookLog to aggregate.
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookLogs to fetch.
+     */
+    orderBy?: WebhookLogOrderByWithRelationInput | WebhookLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WebhookLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WebhookLogs
+    **/
+    _count?: true | WebhookLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: WebhookLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: WebhookLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WebhookLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WebhookLogMaxAggregateInputType
+  }
+
+  export type GetWebhookLogAggregateType<T extends WebhookLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateWebhookLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWebhookLog[P]>
+      : GetScalarType<T[P], AggregateWebhookLog[P]>
+  }
+
+
+
+
+  export type WebhookLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WebhookLogWhereInput
+    orderBy?: WebhookLogOrderByWithAggregationInput | WebhookLogOrderByWithAggregationInput[]
+    by: WebhookLogScalarFieldEnum[] | WebhookLogScalarFieldEnum
+    having?: WebhookLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WebhookLogCountAggregateInputType | true
+    _avg?: WebhookLogAvgAggregateInputType
+    _sum?: WebhookLogSumAggregateInputType
+    _min?: WebhookLogMinAggregateInputType
+    _max?: WebhookLogMaxAggregateInputType
+  }
+
+  export type WebhookLogGroupByOutputType = {
+    id: string
+    endpointId: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode: number | null
+    requestBody: JsonValue | null
+    responseBody: JsonValue | null
+    errorMessage: string | null
+    responseTime: number | null
+    success: boolean
+    timestamp: Date
+    processedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: WebhookLogCountAggregateOutputType | null
+    _avg: WebhookLogAvgAggregateOutputType | null
+    _sum: WebhookLogSumAggregateOutputType | null
+    _min: WebhookLogMinAggregateOutputType | null
+    _max: WebhookLogMaxAggregateOutputType | null
+  }
+
+  type GetWebhookLogGroupByPayload<T extends WebhookLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WebhookLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WebhookLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WebhookLogGroupByOutputType[P]>
+            : GetScalarType<T[P], WebhookLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WebhookLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    endpointId?: boolean
+    type?: boolean
+    method?: boolean
+    url?: boolean
+    status?: boolean
+    statusCode?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    responseTime?: boolean
+    success?: boolean
+    timestamp?: boolean
+    processedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["webhookLog"]>
+
+  export type WebhookLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    endpointId?: boolean
+    type?: boolean
+    method?: boolean
+    url?: boolean
+    status?: boolean
+    statusCode?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    responseTime?: boolean
+    success?: boolean
+    timestamp?: boolean
+    processedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["webhookLog"]>
+
+  export type WebhookLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    endpointId?: boolean
+    type?: boolean
+    method?: boolean
+    url?: boolean
+    status?: boolean
+    statusCode?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    responseTime?: boolean
+    success?: boolean
+    timestamp?: boolean
+    processedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["webhookLog"]>
+
+  export type WebhookLogSelectScalar = {
+    id?: boolean
+    endpointId?: boolean
+    type?: boolean
+    method?: boolean
+    url?: boolean
+    status?: boolean
+    statusCode?: boolean
+    requestBody?: boolean
+    responseBody?: boolean
+    errorMessage?: boolean
+    responseTime?: boolean
+    success?: boolean
+    timestamp?: boolean
+    processedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type WebhookLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "endpointId" | "type" | "method" | "url" | "status" | "statusCode" | "requestBody" | "responseBody" | "errorMessage" | "responseTime" | "success" | "timestamp" | "processedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["webhookLog"]>
+  export type WebhookLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }
+  export type WebhookLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }
+  export type WebhookLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    endpoint?: boolean | endpointDefaultArgs<ExtArgs>
+  }
+
+  export type $WebhookLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WebhookLog"
+    objects: {
+      endpoint: Prisma.$endpointPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      endpointId: string
+      type: string
+      method: string
+      url: string
+      status: string
+      statusCode: number | null
+      requestBody: Prisma.JsonValue | null
+      responseBody: Prisma.JsonValue | null
+      errorMessage: string | null
+      responseTime: number | null
+      success: boolean
+      timestamp: Date
+      processedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["webhookLog"]>
+    composites: {}
+  }
+
+  type WebhookLogGetPayload<S extends boolean | null | undefined | WebhookLogDefaultArgs> = $Result.GetResult<Prisma.$WebhookLogPayload, S>
+
+  type WebhookLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WebhookLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WebhookLogCountAggregateInputType | true
+    }
+
+  export interface WebhookLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WebhookLog'], meta: { name: 'WebhookLog' } }
+    /**
+     * Find zero or one WebhookLog that matches the filter.
+     * @param {WebhookLogFindUniqueArgs} args - Arguments to find a WebhookLog
+     * @example
+     * // Get one WebhookLog
+     * const webhookLog = await prisma.webhookLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WebhookLogFindUniqueArgs>(args: SelectSubset<T, WebhookLogFindUniqueArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WebhookLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WebhookLogFindUniqueOrThrowArgs} args - Arguments to find a WebhookLog
+     * @example
+     * // Get one WebhookLog
+     * const webhookLog = await prisma.webhookLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WebhookLogFindUniqueOrThrowArgs>(args: SelectSubset<T, WebhookLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WebhookLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogFindFirstArgs} args - Arguments to find a WebhookLog
+     * @example
+     * // Get one WebhookLog
+     * const webhookLog = await prisma.webhookLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WebhookLogFindFirstArgs>(args?: SelectSubset<T, WebhookLogFindFirstArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WebhookLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogFindFirstOrThrowArgs} args - Arguments to find a WebhookLog
+     * @example
+     * // Get one WebhookLog
+     * const webhookLog = await prisma.webhookLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WebhookLogFindFirstOrThrowArgs>(args?: SelectSubset<T, WebhookLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WebhookLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WebhookLogs
+     * const webhookLogs = await prisma.webhookLog.findMany()
+     * 
+     * // Get first 10 WebhookLogs
+     * const webhookLogs = await prisma.webhookLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const webhookLogWithIdOnly = await prisma.webhookLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WebhookLogFindManyArgs>(args?: SelectSubset<T, WebhookLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WebhookLog.
+     * @param {WebhookLogCreateArgs} args - Arguments to create a WebhookLog.
+     * @example
+     * // Create one WebhookLog
+     * const WebhookLog = await prisma.webhookLog.create({
+     *   data: {
+     *     // ... data to create a WebhookLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends WebhookLogCreateArgs>(args: SelectSubset<T, WebhookLogCreateArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WebhookLogs.
+     * @param {WebhookLogCreateManyArgs} args - Arguments to create many WebhookLogs.
+     * @example
+     * // Create many WebhookLogs
+     * const webhookLog = await prisma.webhookLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WebhookLogCreateManyArgs>(args?: SelectSubset<T, WebhookLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WebhookLogs and returns the data saved in the database.
+     * @param {WebhookLogCreateManyAndReturnArgs} args - Arguments to create many WebhookLogs.
+     * @example
+     * // Create many WebhookLogs
+     * const webhookLog = await prisma.webhookLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WebhookLogs and only return the `id`
+     * const webhookLogWithIdOnly = await prisma.webhookLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WebhookLogCreateManyAndReturnArgs>(args?: SelectSubset<T, WebhookLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WebhookLog.
+     * @param {WebhookLogDeleteArgs} args - Arguments to delete one WebhookLog.
+     * @example
+     * // Delete one WebhookLog
+     * const WebhookLog = await prisma.webhookLog.delete({
+     *   where: {
+     *     // ... filter to delete one WebhookLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WebhookLogDeleteArgs>(args: SelectSubset<T, WebhookLogDeleteArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WebhookLog.
+     * @param {WebhookLogUpdateArgs} args - Arguments to update one WebhookLog.
+     * @example
+     * // Update one WebhookLog
+     * const webhookLog = await prisma.webhookLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WebhookLogUpdateArgs>(args: SelectSubset<T, WebhookLogUpdateArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WebhookLogs.
+     * @param {WebhookLogDeleteManyArgs} args - Arguments to filter WebhookLogs to delete.
+     * @example
+     * // Delete a few WebhookLogs
+     * const { count } = await prisma.webhookLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WebhookLogDeleteManyArgs>(args?: SelectSubset<T, WebhookLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WebhookLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WebhookLogs
+     * const webhookLog = await prisma.webhookLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WebhookLogUpdateManyArgs>(args: SelectSubset<T, WebhookLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WebhookLogs and returns the data updated in the database.
+     * @param {WebhookLogUpdateManyAndReturnArgs} args - Arguments to update many WebhookLogs.
+     * @example
+     * // Update many WebhookLogs
+     * const webhookLog = await prisma.webhookLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WebhookLogs and only return the `id`
+     * const webhookLogWithIdOnly = await prisma.webhookLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WebhookLogUpdateManyAndReturnArgs>(args: SelectSubset<T, WebhookLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WebhookLog.
+     * @param {WebhookLogUpsertArgs} args - Arguments to update or create a WebhookLog.
+     * @example
+     * // Update or create a WebhookLog
+     * const webhookLog = await prisma.webhookLog.upsert({
+     *   create: {
+     *     // ... data to create a WebhookLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WebhookLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WebhookLogUpsertArgs>(args: SelectSubset<T, WebhookLogUpsertArgs<ExtArgs>>): Prisma__WebhookLogClient<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WebhookLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogCountArgs} args - Arguments to filter WebhookLogs to count.
+     * @example
+     * // Count the number of WebhookLogs
+     * const count = await prisma.webhookLog.count({
+     *   where: {
+     *     // ... the filter for the WebhookLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends WebhookLogCountArgs>(
+      args?: Subset<T, WebhookLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WebhookLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WebhookLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WebhookLogAggregateArgs>(args: Subset<T, WebhookLogAggregateArgs>): Prisma.PrismaPromise<GetWebhookLogAggregateType<T>>
+
+    /**
+     * Group by WebhookLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WebhookLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WebhookLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WebhookLogGroupByArgs['orderBy'] }
+        : { orderBy?: WebhookLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WebhookLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWebhookLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WebhookLog model
+   */
+  readonly fields: WebhookLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WebhookLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WebhookLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    endpoint<T extends endpointDefaultArgs<ExtArgs> = {}>(args?: Subset<T, endpointDefaultArgs<ExtArgs>>): Prisma__endpointClient<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WebhookLog model
+   */
+  interface WebhookLogFieldRefs {
+    readonly id: FieldRef<"WebhookLog", 'String'>
+    readonly endpointId: FieldRef<"WebhookLog", 'String'>
+    readonly type: FieldRef<"WebhookLog", 'String'>
+    readonly method: FieldRef<"WebhookLog", 'String'>
+    readonly url: FieldRef<"WebhookLog", 'String'>
+    readonly status: FieldRef<"WebhookLog", 'String'>
+    readonly statusCode: FieldRef<"WebhookLog", 'Int'>
+    readonly requestBody: FieldRef<"WebhookLog", 'Json'>
+    readonly responseBody: FieldRef<"WebhookLog", 'Json'>
+    readonly errorMessage: FieldRef<"WebhookLog", 'String'>
+    readonly responseTime: FieldRef<"WebhookLog", 'Int'>
+    readonly success: FieldRef<"WebhookLog", 'Boolean'>
+    readonly timestamp: FieldRef<"WebhookLog", 'DateTime'>
+    readonly processedAt: FieldRef<"WebhookLog", 'DateTime'>
+    readonly createdAt: FieldRef<"WebhookLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"WebhookLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WebhookLog findUnique
+   */
+  export type WebhookLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookLog to fetch.
+     */
+    where: WebhookLogWhereUniqueInput
+  }
+
+  /**
+   * WebhookLog findUniqueOrThrow
+   */
+  export type WebhookLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookLog to fetch.
+     */
+    where: WebhookLogWhereUniqueInput
+  }
+
+  /**
+   * WebhookLog findFirst
+   */
+  export type WebhookLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookLog to fetch.
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookLogs to fetch.
+     */
+    orderBy?: WebhookLogOrderByWithRelationInput | WebhookLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WebhookLogs.
+     */
+    cursor?: WebhookLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WebhookLogs.
+     */
+    distinct?: WebhookLogScalarFieldEnum | WebhookLogScalarFieldEnum[]
+  }
+
+  /**
+   * WebhookLog findFirstOrThrow
+   */
+  export type WebhookLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookLog to fetch.
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookLogs to fetch.
+     */
+    orderBy?: WebhookLogOrderByWithRelationInput | WebhookLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WebhookLogs.
+     */
+    cursor?: WebhookLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WebhookLogs.
+     */
+    distinct?: WebhookLogScalarFieldEnum | WebhookLogScalarFieldEnum[]
+  }
+
+  /**
+   * WebhookLog findMany
+   */
+  export type WebhookLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * Filter, which WebhookLogs to fetch.
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WebhookLogs to fetch.
+     */
+    orderBy?: WebhookLogOrderByWithRelationInput | WebhookLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WebhookLogs.
+     */
+    cursor?: WebhookLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WebhookLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WebhookLogs.
+     */
+    skip?: number
+    distinct?: WebhookLogScalarFieldEnum | WebhookLogScalarFieldEnum[]
+  }
+
+  /**
+   * WebhookLog create
+   */
+  export type WebhookLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WebhookLog.
+     */
+    data: XOR<WebhookLogCreateInput, WebhookLogUncheckedCreateInput>
+  }
+
+  /**
+   * WebhookLog createMany
+   */
+  export type WebhookLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WebhookLogs.
+     */
+    data: WebhookLogCreateManyInput | WebhookLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WebhookLog createManyAndReturn
+   */
+  export type WebhookLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many WebhookLogs.
+     */
+    data: WebhookLogCreateManyInput | WebhookLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WebhookLog update
+   */
+  export type WebhookLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WebhookLog.
+     */
+    data: XOR<WebhookLogUpdateInput, WebhookLogUncheckedUpdateInput>
+    /**
+     * Choose, which WebhookLog to update.
+     */
+    where: WebhookLogWhereUniqueInput
+  }
+
+  /**
+   * WebhookLog updateMany
+   */
+  export type WebhookLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WebhookLogs.
+     */
+    data: XOR<WebhookLogUpdateManyMutationInput, WebhookLogUncheckedUpdateManyInput>
+    /**
+     * Filter which WebhookLogs to update
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * Limit how many WebhookLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WebhookLog updateManyAndReturn
+   */
+  export type WebhookLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * The data used to update WebhookLogs.
+     */
+    data: XOR<WebhookLogUpdateManyMutationInput, WebhookLogUncheckedUpdateManyInput>
+    /**
+     * Filter which WebhookLogs to update
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * Limit how many WebhookLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WebhookLog upsert
+   */
+  export type WebhookLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WebhookLog to update in case it exists.
+     */
+    where: WebhookLogWhereUniqueInput
+    /**
+     * In case the WebhookLog found by the `where` argument doesn't exist, create a new WebhookLog with this data.
+     */
+    create: XOR<WebhookLogCreateInput, WebhookLogUncheckedCreateInput>
+    /**
+     * In case the WebhookLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WebhookLogUpdateInput, WebhookLogUncheckedUpdateInput>
+  }
+
+  /**
+   * WebhookLog delete
+   */
+  export type WebhookLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    /**
+     * Filter which WebhookLog to delete.
+     */
+    where: WebhookLogWhereUniqueInput
+  }
+
+  /**
+   * WebhookLog deleteMany
+   */
+  export type WebhookLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WebhookLogs to delete
+     */
+    where?: WebhookLogWhereInput
+    /**
+     * Limit how many WebhookLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WebhookLog without action
+   */
+  export type WebhookLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model endpoint
    */
 
@@ -4018,6 +6585,8 @@ export namespace Prisma {
     path: number
     targetendpointId: number
     description: number
+    sourceExmpObj: number
+    targetExmpObj: number
     _all: number
   }
 
@@ -4050,6 +6619,8 @@ export namespace Prisma {
     path?: true
     targetendpointId?: true
     description?: true
+    sourceExmpObj?: true
+    targetExmpObj?: true
     _all?: true
   }
 
@@ -4133,6 +6704,8 @@ export namespace Prisma {
     path: string
     targetendpointId: string | null
     description: string | null
+    sourceExmpObj: JsonValue | null
+    targetExmpObj: JsonValue | null
     _count: EndpointCountAggregateOutputType | null
     _min: EndpointMinAggregateOutputType | null
     _max: EndpointMaxAggregateOutputType | null
@@ -4160,10 +6733,14 @@ export namespace Prisma {
     path?: boolean
     targetendpointId?: boolean
     description?: boolean
+    sourceExmpObj?: boolean
+    targetExmpObj?: boolean
     api?: boolean | apiDefaultArgs<ExtArgs>
     targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
     sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
     mapping?: boolean | endpoint$mappingArgs<ExtArgs>
+    logs?: boolean | endpoint$logsArgs<ExtArgs>
+    webhookLogs?: boolean | endpoint$webhookLogsArgs<ExtArgs>
     _count?: boolean | EndpointCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["endpoint"]>
 
@@ -4175,6 +6752,8 @@ export namespace Prisma {
     path?: boolean
     targetendpointId?: boolean
     description?: boolean
+    sourceExmpObj?: boolean
+    targetExmpObj?: boolean
     api?: boolean | apiDefaultArgs<ExtArgs>
     targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
   }, ExtArgs["result"]["endpoint"]>
@@ -4187,6 +6766,8 @@ export namespace Prisma {
     path?: boolean
     targetendpointId?: boolean
     description?: boolean
+    sourceExmpObj?: boolean
+    targetExmpObj?: boolean
     api?: boolean | apiDefaultArgs<ExtArgs>
     targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
   }, ExtArgs["result"]["endpoint"]>
@@ -4199,14 +6780,18 @@ export namespace Prisma {
     path?: boolean
     targetendpointId?: boolean
     description?: boolean
+    sourceExmpObj?: boolean
+    targetExmpObj?: boolean
   }
 
-  export type endpointOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "apiId" | "method" | "path" | "targetendpointId" | "description", ExtArgs["result"]["endpoint"]>
+  export type endpointOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "apiId" | "method" | "path" | "targetendpointId" | "description" | "sourceExmpObj" | "targetExmpObj", ExtArgs["result"]["endpoint"]>
   export type endpointInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     api?: boolean | apiDefaultArgs<ExtArgs>
     targetendpoint?: boolean | endpoint$targetendpointArgs<ExtArgs>
     sourceendpoint?: boolean | endpoint$sourceendpointArgs<ExtArgs>
     mapping?: boolean | endpoint$mappingArgs<ExtArgs>
+    logs?: boolean | endpoint$logsArgs<ExtArgs>
+    webhookLogs?: boolean | endpoint$webhookLogsArgs<ExtArgs>
     _count?: boolean | EndpointCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type endpointIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4225,6 +6810,8 @@ export namespace Prisma {
       targetendpoint: Prisma.$endpointPayload<ExtArgs> | null
       sourceendpoint: Prisma.$endpointPayload<ExtArgs>[]
       mapping: Prisma.$mappingPayload<ExtArgs>[]
+      logs: Prisma.$apiLogPayload<ExtArgs>[]
+      webhookLogs: Prisma.$WebhookLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4234,6 +6821,8 @@ export namespace Prisma {
       path: string
       targetendpointId: string | null
       description: string | null
+      sourceExmpObj: Prisma.JsonValue | null
+      targetExmpObj: Prisma.JsonValue | null
     }, ExtArgs["result"]["endpoint"]>
     composites: {}
   }
@@ -4632,6 +7221,8 @@ export namespace Prisma {
     targetendpoint<T extends endpoint$targetendpointArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$targetendpointArgs<ExtArgs>>): Prisma__endpointClient<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     sourceendpoint<T extends endpoint$sourceendpointArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$sourceendpointArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$endpointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mapping<T extends endpoint$mappingArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$mappingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mappingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    logs<T extends endpoint$logsArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$apiLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    webhookLogs<T extends endpoint$webhookLogsArgs<ExtArgs> = {}>(args?: Subset<T, endpoint$webhookLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebhookLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4668,6 +7259,8 @@ export namespace Prisma {
     readonly path: FieldRef<"endpoint", 'String'>
     readonly targetendpointId: FieldRef<"endpoint", 'String'>
     readonly description: FieldRef<"endpoint", 'String'>
+    readonly sourceExmpObj: FieldRef<"endpoint", 'Json'>
+    readonly targetExmpObj: FieldRef<"endpoint", 'Json'>
   }
     
 
@@ -5128,6 +7721,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MappingScalarFieldEnum | MappingScalarFieldEnum[]
+  }
+
+  /**
+   * endpoint.logs
+   */
+  export type endpoint$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apiLog
+     */
+    select?: apiLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apiLog
+     */
+    omit?: apiLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: apiLogInclude<ExtArgs> | null
+    where?: apiLogWhereInput
+    orderBy?: apiLogOrderByWithRelationInput | apiLogOrderByWithRelationInput[]
+    cursor?: apiLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApiLogScalarFieldEnum | ApiLogScalarFieldEnum[]
+  }
+
+  /**
+   * endpoint.webhookLogs
+   */
+  export type endpoint$webhookLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WebhookLog
+     */
+    select?: WebhookLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WebhookLog
+     */
+    omit?: WebhookLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WebhookLogInclude<ExtArgs> | null
+    where?: WebhookLogWhereInput
+    orderBy?: WebhookLogOrderByWithRelationInput | WebhookLogOrderByWithRelationInput[]
+    cursor?: WebhookLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WebhookLogScalarFieldEnum | WebhookLogScalarFieldEnum[]
   }
 
   /**
@@ -12882,6 +15523,43 @@ export namespace Prisma {
   export type ApiScalarFieldEnum = (typeof ApiScalarFieldEnum)[keyof typeof ApiScalarFieldEnum]
 
 
+  export const ApiLogScalarFieldEnum: {
+    id: 'id',
+    endpointId: 'endpointId',
+    status: 'status',
+    method: 'method',
+    requestBody: 'requestBody',
+    responseBody: 'responseBody',
+    errorMessage: 'errorMessage',
+    statusCode: 'statusCode',
+    createdAt: 'createdAt'
+  };
+
+  export type ApiLogScalarFieldEnum = (typeof ApiLogScalarFieldEnum)[keyof typeof ApiLogScalarFieldEnum]
+
+
+  export const WebhookLogScalarFieldEnum: {
+    id: 'id',
+    endpointId: 'endpointId',
+    type: 'type',
+    method: 'method',
+    url: 'url',
+    status: 'status',
+    statusCode: 'statusCode',
+    requestBody: 'requestBody',
+    responseBody: 'responseBody',
+    errorMessage: 'errorMessage',
+    responseTime: 'responseTime',
+    success: 'success',
+    timestamp: 'timestamp',
+    processedAt: 'processedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type WebhookLogScalarFieldEnum = (typeof WebhookLogScalarFieldEnum)[keyof typeof WebhookLogScalarFieldEnum]
+
+
   export const EndpointScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -12889,7 +15567,9 @@ export namespace Prisma {
     method: 'method',
     path: 'path',
     targetendpointId: 'targetendpointId',
-    description: 'description'
+    description: 'description',
+    sourceExmpObj: 'sourceExmpObj',
+    targetExmpObj: 'targetExmpObj'
   };
 
   export type EndpointScalarFieldEnum = (typeof EndpointScalarFieldEnum)[keyof typeof EndpointScalarFieldEnum]
@@ -12997,6 +15677,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -13011,6 +15699,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -13033,16 +15730,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Json'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
   /**
-   * Reference to a field of type 'DateTime[]'
+   * Reference to a field of type 'QueryMode'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -13057,6 +15754,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -13185,6 +15896,195 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"api"> | string | null
   }
 
+  export type apiLogWhereInput = {
+    AND?: apiLogWhereInput | apiLogWhereInput[]
+    OR?: apiLogWhereInput[]
+    NOT?: apiLogWhereInput | apiLogWhereInput[]
+    id?: StringFilter<"apiLog"> | string
+    endpointId?: StringFilter<"apiLog"> | string
+    status?: StringFilter<"apiLog"> | string
+    method?: StringFilter<"apiLog"> | string
+    requestBody?: JsonNullableFilter<"apiLog">
+    responseBody?: JsonNullableFilter<"apiLog">
+    errorMessage?: StringNullableFilter<"apiLog"> | string | null
+    statusCode?: IntNullableFilter<"apiLog"> | number | null
+    createdAt?: DateTimeFilter<"apiLog"> | Date | string
+    endpoint?: XOR<EndpointScalarRelationFilter, endpointWhereInput>
+  }
+
+  export type apiLogOrderByWithRelationInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    status?: SortOrder
+    method?: SortOrder
+    requestBody?: SortOrderInput | SortOrder
+    responseBody?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    statusCode?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    endpoint?: endpointOrderByWithRelationInput
+  }
+
+  export type apiLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: apiLogWhereInput | apiLogWhereInput[]
+    OR?: apiLogWhereInput[]
+    NOT?: apiLogWhereInput | apiLogWhereInput[]
+    endpointId?: StringFilter<"apiLog"> | string
+    status?: StringFilter<"apiLog"> | string
+    method?: StringFilter<"apiLog"> | string
+    requestBody?: JsonNullableFilter<"apiLog">
+    responseBody?: JsonNullableFilter<"apiLog">
+    errorMessage?: StringNullableFilter<"apiLog"> | string | null
+    statusCode?: IntNullableFilter<"apiLog"> | number | null
+    createdAt?: DateTimeFilter<"apiLog"> | Date | string
+    endpoint?: XOR<EndpointScalarRelationFilter, endpointWhereInput>
+  }, "id">
+
+  export type apiLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    status?: SortOrder
+    method?: SortOrder
+    requestBody?: SortOrderInput | SortOrder
+    responseBody?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    statusCode?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: apiLogCountOrderByAggregateInput
+    _avg?: apiLogAvgOrderByAggregateInput
+    _max?: apiLogMaxOrderByAggregateInput
+    _min?: apiLogMinOrderByAggregateInput
+    _sum?: apiLogSumOrderByAggregateInput
+  }
+
+  export type apiLogScalarWhereWithAggregatesInput = {
+    AND?: apiLogScalarWhereWithAggregatesInput | apiLogScalarWhereWithAggregatesInput[]
+    OR?: apiLogScalarWhereWithAggregatesInput[]
+    NOT?: apiLogScalarWhereWithAggregatesInput | apiLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"apiLog"> | string
+    endpointId?: StringWithAggregatesFilter<"apiLog"> | string
+    status?: StringWithAggregatesFilter<"apiLog"> | string
+    method?: StringWithAggregatesFilter<"apiLog"> | string
+    requestBody?: JsonNullableWithAggregatesFilter<"apiLog">
+    responseBody?: JsonNullableWithAggregatesFilter<"apiLog">
+    errorMessage?: StringNullableWithAggregatesFilter<"apiLog"> | string | null
+    statusCode?: IntNullableWithAggregatesFilter<"apiLog"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"apiLog"> | Date | string
+  }
+
+  export type WebhookLogWhereInput = {
+    AND?: WebhookLogWhereInput | WebhookLogWhereInput[]
+    OR?: WebhookLogWhereInput[]
+    NOT?: WebhookLogWhereInput | WebhookLogWhereInput[]
+    id?: StringFilter<"WebhookLog"> | string
+    endpointId?: StringFilter<"WebhookLog"> | string
+    type?: StringFilter<"WebhookLog"> | string
+    method?: StringFilter<"WebhookLog"> | string
+    url?: StringFilter<"WebhookLog"> | string
+    status?: StringFilter<"WebhookLog"> | string
+    statusCode?: IntNullableFilter<"WebhookLog"> | number | null
+    requestBody?: JsonNullableFilter<"WebhookLog">
+    responseBody?: JsonNullableFilter<"WebhookLog">
+    errorMessage?: StringNullableFilter<"WebhookLog"> | string | null
+    responseTime?: IntNullableFilter<"WebhookLog"> | number | null
+    success?: BoolFilter<"WebhookLog"> | boolean
+    timestamp?: DateTimeFilter<"WebhookLog"> | Date | string
+    processedAt?: DateTimeNullableFilter<"WebhookLog"> | Date | string | null
+    createdAt?: DateTimeFilter<"WebhookLog"> | Date | string
+    updatedAt?: DateTimeFilter<"WebhookLog"> | Date | string
+    endpoint?: XOR<EndpointScalarRelationFilter, endpointWhereInput>
+  }
+
+  export type WebhookLogOrderByWithRelationInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    type?: SortOrder
+    method?: SortOrder
+    url?: SortOrder
+    status?: SortOrder
+    statusCode?: SortOrderInput | SortOrder
+    requestBody?: SortOrderInput | SortOrder
+    responseBody?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    responseTime?: SortOrderInput | SortOrder
+    success?: SortOrder
+    timestamp?: SortOrder
+    processedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    endpoint?: endpointOrderByWithRelationInput
+  }
+
+  export type WebhookLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WebhookLogWhereInput | WebhookLogWhereInput[]
+    OR?: WebhookLogWhereInput[]
+    NOT?: WebhookLogWhereInput | WebhookLogWhereInput[]
+    endpointId?: StringFilter<"WebhookLog"> | string
+    type?: StringFilter<"WebhookLog"> | string
+    method?: StringFilter<"WebhookLog"> | string
+    url?: StringFilter<"WebhookLog"> | string
+    status?: StringFilter<"WebhookLog"> | string
+    statusCode?: IntNullableFilter<"WebhookLog"> | number | null
+    requestBody?: JsonNullableFilter<"WebhookLog">
+    responseBody?: JsonNullableFilter<"WebhookLog">
+    errorMessage?: StringNullableFilter<"WebhookLog"> | string | null
+    responseTime?: IntNullableFilter<"WebhookLog"> | number | null
+    success?: BoolFilter<"WebhookLog"> | boolean
+    timestamp?: DateTimeFilter<"WebhookLog"> | Date | string
+    processedAt?: DateTimeNullableFilter<"WebhookLog"> | Date | string | null
+    createdAt?: DateTimeFilter<"WebhookLog"> | Date | string
+    updatedAt?: DateTimeFilter<"WebhookLog"> | Date | string
+    endpoint?: XOR<EndpointScalarRelationFilter, endpointWhereInput>
+  }, "id">
+
+  export type WebhookLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    type?: SortOrder
+    method?: SortOrder
+    url?: SortOrder
+    status?: SortOrder
+    statusCode?: SortOrderInput | SortOrder
+    requestBody?: SortOrderInput | SortOrder
+    responseBody?: SortOrderInput | SortOrder
+    errorMessage?: SortOrderInput | SortOrder
+    responseTime?: SortOrderInput | SortOrder
+    success?: SortOrder
+    timestamp?: SortOrder
+    processedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: WebhookLogCountOrderByAggregateInput
+    _avg?: WebhookLogAvgOrderByAggregateInput
+    _max?: WebhookLogMaxOrderByAggregateInput
+    _min?: WebhookLogMinOrderByAggregateInput
+    _sum?: WebhookLogSumOrderByAggregateInput
+  }
+
+  export type WebhookLogScalarWhereWithAggregatesInput = {
+    AND?: WebhookLogScalarWhereWithAggregatesInput | WebhookLogScalarWhereWithAggregatesInput[]
+    OR?: WebhookLogScalarWhereWithAggregatesInput[]
+    NOT?: WebhookLogScalarWhereWithAggregatesInput | WebhookLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WebhookLog"> | string
+    endpointId?: StringWithAggregatesFilter<"WebhookLog"> | string
+    type?: StringWithAggregatesFilter<"WebhookLog"> | string
+    method?: StringWithAggregatesFilter<"WebhookLog"> | string
+    url?: StringWithAggregatesFilter<"WebhookLog"> | string
+    status?: StringWithAggregatesFilter<"WebhookLog"> | string
+    statusCode?: IntNullableWithAggregatesFilter<"WebhookLog"> | number | null
+    requestBody?: JsonNullableWithAggregatesFilter<"WebhookLog">
+    responseBody?: JsonNullableWithAggregatesFilter<"WebhookLog">
+    errorMessage?: StringNullableWithAggregatesFilter<"WebhookLog"> | string | null
+    responseTime?: IntNullableWithAggregatesFilter<"WebhookLog"> | number | null
+    success?: BoolWithAggregatesFilter<"WebhookLog"> | boolean
+    timestamp?: DateTimeWithAggregatesFilter<"WebhookLog"> | Date | string
+    processedAt?: DateTimeNullableWithAggregatesFilter<"WebhookLog"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"WebhookLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"WebhookLog"> | Date | string
+  }
+
   export type endpointWhereInput = {
     AND?: endpointWhereInput | endpointWhereInput[]
     OR?: endpointWhereInput[]
@@ -13196,10 +16096,14 @@ export namespace Prisma {
     path?: StringFilter<"endpoint"> | string
     targetendpointId?: StringNullableFilter<"endpoint"> | string | null
     description?: StringNullableFilter<"endpoint"> | string | null
+    sourceExmpObj?: JsonNullableFilter<"endpoint">
+    targetExmpObj?: JsonNullableFilter<"endpoint">
     api?: XOR<ApiScalarRelationFilter, apiWhereInput>
     targetendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
     sourceendpoint?: EndpointListRelationFilter
     mapping?: MappingListRelationFilter
+    logs?: ApiLogListRelationFilter
+    webhookLogs?: WebhookLogListRelationFilter
   }
 
   export type endpointOrderByWithRelationInput = {
@@ -13210,10 +16114,14 @@ export namespace Prisma {
     path?: SortOrder
     targetendpointId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    sourceExmpObj?: SortOrderInput | SortOrder
+    targetExmpObj?: SortOrderInput | SortOrder
     api?: apiOrderByWithRelationInput
     targetendpoint?: endpointOrderByWithRelationInput
     sourceendpoint?: endpointOrderByRelationAggregateInput
     mapping?: mappingOrderByRelationAggregateInput
+    logs?: apiLogOrderByRelationAggregateInput
+    webhookLogs?: WebhookLogOrderByRelationAggregateInput
   }
 
   export type endpointWhereUniqueInput = Prisma.AtLeast<{
@@ -13227,10 +16135,14 @@ export namespace Prisma {
     path?: StringFilter<"endpoint"> | string
     targetendpointId?: StringNullableFilter<"endpoint"> | string | null
     description?: StringNullableFilter<"endpoint"> | string | null
+    sourceExmpObj?: JsonNullableFilter<"endpoint">
+    targetExmpObj?: JsonNullableFilter<"endpoint">
     api?: XOR<ApiScalarRelationFilter, apiWhereInput>
     targetendpoint?: XOR<EndpointNullableScalarRelationFilter, endpointWhereInput> | null
     sourceendpoint?: EndpointListRelationFilter
     mapping?: MappingListRelationFilter
+    logs?: ApiLogListRelationFilter
+    webhookLogs?: WebhookLogListRelationFilter
   }, "id">
 
   export type endpointOrderByWithAggregationInput = {
@@ -13241,6 +16153,8 @@ export namespace Prisma {
     path?: SortOrder
     targetendpointId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    sourceExmpObj?: SortOrderInput | SortOrder
+    targetExmpObj?: SortOrderInput | SortOrder
     _count?: endpointCountOrderByAggregateInput
     _max?: endpointMaxOrderByAggregateInput
     _min?: endpointMinOrderByAggregateInput
@@ -13257,6 +16171,8 @@ export namespace Prisma {
     path?: StringWithAggregatesFilter<"endpoint"> | string
     targetendpointId?: StringNullableWithAggregatesFilter<"endpoint"> | string | null
     description?: StringNullableWithAggregatesFilter<"endpoint"> | string | null
+    sourceExmpObj?: JsonNullableWithAggregatesFilter<"endpoint">
+    targetExmpObj?: JsonNullableWithAggregatesFilter<"endpoint">
   }
 
   export type mappingWhereInput = {
@@ -13841,16 +16757,235 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type apiLogCreateInput = {
+    id?: string
+    status: string
+    method: string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    statusCode?: number | null
+    createdAt?: Date | string
+    endpoint: endpointCreateNestedOneWithoutLogsInput
+  }
+
+  export type apiLogUncheckedCreateInput = {
+    id?: string
+    endpointId: string
+    status: string
+    method: string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    statusCode?: number | null
+    createdAt?: Date | string
+  }
+
+  export type apiLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endpoint?: endpointUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type apiLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpointId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type apiLogCreateManyInput = {
+    id?: string
+    endpointId: string
+    status: string
+    method: string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    statusCode?: number | null
+    createdAt?: Date | string
+  }
+
+  export type apiLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type apiLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpointId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookLogCreateInput = {
+    id?: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode?: number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    responseTime?: number | null
+    success?: boolean
+    timestamp?: Date | string
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endpoint: endpointCreateNestedOneWithoutWebhookLogsInput
+  }
+
+  export type WebhookLogUncheckedCreateInput = {
+    id?: string
+    endpointId: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode?: number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    responseTime?: number | null
+    success?: boolean
+    timestamp?: Date | string
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WebhookLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endpoint?: endpointUpdateOneRequiredWithoutWebhookLogsNestedInput
+  }
+
+  export type WebhookLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpointId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookLogCreateManyInput = {
+    id?: string
+    endpointId: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode?: number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    responseTime?: number | null
+    success?: boolean
+    timestamp?: Date | string
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WebhookLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    endpointId?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type endpointCreateInput = {
     id?: string
     name: string
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api: apiCreateNestedOneWithoutEndpointsInput
     targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
     sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
+    logs?: apiLogCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointUncheckedCreateInput = {
@@ -13861,8 +16996,12 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
+    logs?: apiLogUncheckedCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogUncheckedCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointUpdateInput = {
@@ -13871,10 +17010,14 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
     targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
     sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateInput = {
@@ -13885,8 +17028,12 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUncheckedUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointCreateManyInput = {
@@ -13897,6 +17044,8 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type endpointUpdateManyMutationInput = {
@@ -13905,6 +17054,8 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type endpointUncheckedUpdateManyInput = {
@@ -13915,6 +17066,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type mappingCreateInput = {
@@ -14574,6 +17727,253 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type EndpointScalarRelationFilter = {
+    is?: endpointWhereInput
+    isNot?: endpointWhereInput
+  }
+
+  export type apiLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    status?: SortOrder
+    method?: SortOrder
+    requestBody?: SortOrder
+    responseBody?: SortOrder
+    errorMessage?: SortOrder
+    statusCode?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type apiLogAvgOrderByAggregateInput = {
+    statusCode?: SortOrder
+  }
+
+  export type apiLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    status?: SortOrder
+    method?: SortOrder
+    errorMessage?: SortOrder
+    statusCode?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type apiLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    status?: SortOrder
+    method?: SortOrder
+    errorMessage?: SortOrder
+    statusCode?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type apiLogSumOrderByAggregateInput = {
+    statusCode?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type WebhookLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    type?: SortOrder
+    method?: SortOrder
+    url?: SortOrder
+    status?: SortOrder
+    statusCode?: SortOrder
+    requestBody?: SortOrder
+    responseBody?: SortOrder
+    errorMessage?: SortOrder
+    responseTime?: SortOrder
+    success?: SortOrder
+    timestamp?: SortOrder
+    processedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WebhookLogAvgOrderByAggregateInput = {
+    statusCode?: SortOrder
+    responseTime?: SortOrder
+  }
+
+  export type WebhookLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    type?: SortOrder
+    method?: SortOrder
+    url?: SortOrder
+    status?: SortOrder
+    statusCode?: SortOrder
+    errorMessage?: SortOrder
+    responseTime?: SortOrder
+    success?: SortOrder
+    timestamp?: SortOrder
+    processedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WebhookLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    endpointId?: SortOrder
+    type?: SortOrder
+    method?: SortOrder
+    url?: SortOrder
+    status?: SortOrder
+    statusCode?: SortOrder
+    errorMessage?: SortOrder
+    responseTime?: SortOrder
+    success?: SortOrder
+    timestamp?: SortOrder
+    processedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WebhookLogSumOrderByAggregateInput = {
+    statusCode?: SortOrder
+    responseTime?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
 
   export type ApiScalarRelationFilter = {
     is?: apiWhereInput
@@ -14591,7 +17991,27 @@ export namespace Prisma {
     none?: mappingWhereInput
   }
 
+  export type ApiLogListRelationFilter = {
+    every?: apiLogWhereInput
+    some?: apiLogWhereInput
+    none?: apiLogWhereInput
+  }
+
+  export type WebhookLogListRelationFilter = {
+    every?: WebhookLogWhereInput
+    some?: WebhookLogWhereInput
+    none?: WebhookLogWhereInput
+  }
+
   export type mappingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type apiLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WebhookLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14603,6 +18023,8 @@ export namespace Prisma {
     path?: SortOrder
     targetendpointId?: SortOrder
     description?: SortOrder
+    sourceExmpObj?: SortOrder
+    targetExmpObj?: SortOrder
   }
 
   export type endpointMaxOrderByAggregateInput = {
@@ -14623,11 +18045,6 @@ export namespace Prisma {
     path?: SortOrder
     targetendpointId?: SortOrder
     description?: SortOrder
-  }
-
-  export type EndpointScalarRelationFilter = {
-    is?: endpointWhereInput
-    isNot?: endpointWhereInput
   }
 
   export type mappingCountOrderByAggregateInput = {
@@ -14696,28 +18113,6 @@ export namespace Prisma {
     description?: SortOrder
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type AccountListRelationFilter = {
     every?: AccountWhereInput
     some?: AccountWhereInput
@@ -14776,45 +18171,6 @@ export namespace Prisma {
     image?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type UserScalarRelationFilter = {
@@ -14883,22 +18239,6 @@ export namespace Prisma {
     expires_at?: SortOrder
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type SessionCountOrderByAggregateInput = {
     sessionToken?: SortOrder
     userId?: SortOrder
@@ -14955,11 +18295,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type AuthenticatorUserIdCredentialIDCompoundUniqueInput = {
@@ -15022,14 +18357,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type apiCreateNestedManyWithoutCompanyInput = {
@@ -15170,6 +18497,54 @@ export namespace Prisma {
     deleteMany?: endpointScalarWhereInput | endpointScalarWhereInput[]
   }
 
+  export type endpointCreateNestedOneWithoutLogsInput = {
+    create?: XOR<endpointCreateWithoutLogsInput, endpointUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: endpointCreateOrConnectWithoutLogsInput
+    connect?: endpointWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type endpointUpdateOneRequiredWithoutLogsNestedInput = {
+    create?: XOR<endpointCreateWithoutLogsInput, endpointUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: endpointCreateOrConnectWithoutLogsInput
+    upsert?: endpointUpsertWithoutLogsInput
+    connect?: endpointWhereUniqueInput
+    update?: XOR<XOR<endpointUpdateToOneWithWhereWithoutLogsInput, endpointUpdateWithoutLogsInput>, endpointUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type endpointCreateNestedOneWithoutWebhookLogsInput = {
+    create?: XOR<endpointCreateWithoutWebhookLogsInput, endpointUncheckedCreateWithoutWebhookLogsInput>
+    connectOrCreate?: endpointCreateOrConnectWithoutWebhookLogsInput
+    connect?: endpointWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type endpointUpdateOneRequiredWithoutWebhookLogsNestedInput = {
+    create?: XOR<endpointCreateWithoutWebhookLogsInput, endpointUncheckedCreateWithoutWebhookLogsInput>
+    connectOrCreate?: endpointCreateOrConnectWithoutWebhookLogsInput
+    upsert?: endpointUpsertWithoutWebhookLogsInput
+    connect?: endpointWhereUniqueInput
+    update?: XOR<XOR<endpointUpdateToOneWithWhereWithoutWebhookLogsInput, endpointUpdateWithoutWebhookLogsInput>, endpointUncheckedUpdateWithoutWebhookLogsInput>
+  }
+
   export type apiCreateNestedOneWithoutEndpointsInput = {
     create?: XOR<apiCreateWithoutEndpointsInput, apiUncheckedCreateWithoutEndpointsInput>
     connectOrCreate?: apiCreateOrConnectWithoutEndpointsInput
@@ -15196,6 +18571,20 @@ export namespace Prisma {
     connect?: mappingWhereUniqueInput | mappingWhereUniqueInput[]
   }
 
+  export type apiLogCreateNestedManyWithoutEndpointInput = {
+    create?: XOR<apiLogCreateWithoutEndpointInput, apiLogUncheckedCreateWithoutEndpointInput> | apiLogCreateWithoutEndpointInput[] | apiLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: apiLogCreateOrConnectWithoutEndpointInput | apiLogCreateOrConnectWithoutEndpointInput[]
+    createMany?: apiLogCreateManyEndpointInputEnvelope
+    connect?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+  }
+
+  export type WebhookLogCreateNestedManyWithoutEndpointInput = {
+    create?: XOR<WebhookLogCreateWithoutEndpointInput, WebhookLogUncheckedCreateWithoutEndpointInput> | WebhookLogCreateWithoutEndpointInput[] | WebhookLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: WebhookLogCreateOrConnectWithoutEndpointInput | WebhookLogCreateOrConnectWithoutEndpointInput[]
+    createMany?: WebhookLogCreateManyEndpointInputEnvelope
+    connect?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+  }
+
   export type endpointUncheckedCreateNestedManyWithoutTargetendpointInput = {
     create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput> | endpointCreateWithoutTargetendpointInput[] | endpointUncheckedCreateWithoutTargetendpointInput[]
     connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput | endpointCreateOrConnectWithoutTargetendpointInput[]
@@ -15208,6 +18597,20 @@ export namespace Prisma {
     connectOrCreate?: mappingCreateOrConnectWithoutEndpointInput | mappingCreateOrConnectWithoutEndpointInput[]
     createMany?: mappingCreateManyEndpointInputEnvelope
     connect?: mappingWhereUniqueInput | mappingWhereUniqueInput[]
+  }
+
+  export type apiLogUncheckedCreateNestedManyWithoutEndpointInput = {
+    create?: XOR<apiLogCreateWithoutEndpointInput, apiLogUncheckedCreateWithoutEndpointInput> | apiLogCreateWithoutEndpointInput[] | apiLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: apiLogCreateOrConnectWithoutEndpointInput | apiLogCreateOrConnectWithoutEndpointInput[]
+    createMany?: apiLogCreateManyEndpointInputEnvelope
+    connect?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+  }
+
+  export type WebhookLogUncheckedCreateNestedManyWithoutEndpointInput = {
+    create?: XOR<WebhookLogCreateWithoutEndpointInput, WebhookLogUncheckedCreateWithoutEndpointInput> | WebhookLogCreateWithoutEndpointInput[] | WebhookLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: WebhookLogCreateOrConnectWithoutEndpointInput | WebhookLogCreateOrConnectWithoutEndpointInput[]
+    createMany?: WebhookLogCreateManyEndpointInputEnvelope
+    connect?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
   }
 
   export type apiUpdateOneRequiredWithoutEndpointsNestedInput = {
@@ -15256,6 +18659,34 @@ export namespace Prisma {
     deleteMany?: mappingScalarWhereInput | mappingScalarWhereInput[]
   }
 
+  export type apiLogUpdateManyWithoutEndpointNestedInput = {
+    create?: XOR<apiLogCreateWithoutEndpointInput, apiLogUncheckedCreateWithoutEndpointInput> | apiLogCreateWithoutEndpointInput[] | apiLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: apiLogCreateOrConnectWithoutEndpointInput | apiLogCreateOrConnectWithoutEndpointInput[]
+    upsert?: apiLogUpsertWithWhereUniqueWithoutEndpointInput | apiLogUpsertWithWhereUniqueWithoutEndpointInput[]
+    createMany?: apiLogCreateManyEndpointInputEnvelope
+    set?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    disconnect?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    delete?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    connect?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    update?: apiLogUpdateWithWhereUniqueWithoutEndpointInput | apiLogUpdateWithWhereUniqueWithoutEndpointInput[]
+    updateMany?: apiLogUpdateManyWithWhereWithoutEndpointInput | apiLogUpdateManyWithWhereWithoutEndpointInput[]
+    deleteMany?: apiLogScalarWhereInput | apiLogScalarWhereInput[]
+  }
+
+  export type WebhookLogUpdateManyWithoutEndpointNestedInput = {
+    create?: XOR<WebhookLogCreateWithoutEndpointInput, WebhookLogUncheckedCreateWithoutEndpointInput> | WebhookLogCreateWithoutEndpointInput[] | WebhookLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: WebhookLogCreateOrConnectWithoutEndpointInput | WebhookLogCreateOrConnectWithoutEndpointInput[]
+    upsert?: WebhookLogUpsertWithWhereUniqueWithoutEndpointInput | WebhookLogUpsertWithWhereUniqueWithoutEndpointInput[]
+    createMany?: WebhookLogCreateManyEndpointInputEnvelope
+    set?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    disconnect?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    delete?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    connect?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    update?: WebhookLogUpdateWithWhereUniqueWithoutEndpointInput | WebhookLogUpdateWithWhereUniqueWithoutEndpointInput[]
+    updateMany?: WebhookLogUpdateManyWithWhereWithoutEndpointInput | WebhookLogUpdateManyWithWhereWithoutEndpointInput[]
+    deleteMany?: WebhookLogScalarWhereInput | WebhookLogScalarWhereInput[]
+  }
+
   export type endpointUncheckedUpdateManyWithoutTargetendpointNestedInput = {
     create?: XOR<endpointCreateWithoutTargetendpointInput, endpointUncheckedCreateWithoutTargetendpointInput> | endpointCreateWithoutTargetendpointInput[] | endpointUncheckedCreateWithoutTargetendpointInput[]
     connectOrCreate?: endpointCreateOrConnectWithoutTargetendpointInput | endpointCreateOrConnectWithoutTargetendpointInput[]
@@ -15282,6 +18713,34 @@ export namespace Prisma {
     update?: mappingUpdateWithWhereUniqueWithoutEndpointInput | mappingUpdateWithWhereUniqueWithoutEndpointInput[]
     updateMany?: mappingUpdateManyWithWhereWithoutEndpointInput | mappingUpdateManyWithWhereWithoutEndpointInput[]
     deleteMany?: mappingScalarWhereInput | mappingScalarWhereInput[]
+  }
+
+  export type apiLogUncheckedUpdateManyWithoutEndpointNestedInput = {
+    create?: XOR<apiLogCreateWithoutEndpointInput, apiLogUncheckedCreateWithoutEndpointInput> | apiLogCreateWithoutEndpointInput[] | apiLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: apiLogCreateOrConnectWithoutEndpointInput | apiLogCreateOrConnectWithoutEndpointInput[]
+    upsert?: apiLogUpsertWithWhereUniqueWithoutEndpointInput | apiLogUpsertWithWhereUniqueWithoutEndpointInput[]
+    createMany?: apiLogCreateManyEndpointInputEnvelope
+    set?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    disconnect?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    delete?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    connect?: apiLogWhereUniqueInput | apiLogWhereUniqueInput[]
+    update?: apiLogUpdateWithWhereUniqueWithoutEndpointInput | apiLogUpdateWithWhereUniqueWithoutEndpointInput[]
+    updateMany?: apiLogUpdateManyWithWhereWithoutEndpointInput | apiLogUpdateManyWithWhereWithoutEndpointInput[]
+    deleteMany?: apiLogScalarWhereInput | apiLogScalarWhereInput[]
+  }
+
+  export type WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput = {
+    create?: XOR<WebhookLogCreateWithoutEndpointInput, WebhookLogUncheckedCreateWithoutEndpointInput> | WebhookLogCreateWithoutEndpointInput[] | WebhookLogUncheckedCreateWithoutEndpointInput[]
+    connectOrCreate?: WebhookLogCreateOrConnectWithoutEndpointInput | WebhookLogCreateOrConnectWithoutEndpointInput[]
+    upsert?: WebhookLogUpsertWithWhereUniqueWithoutEndpointInput | WebhookLogUpsertWithWhereUniqueWithoutEndpointInput[]
+    createMany?: WebhookLogCreateManyEndpointInputEnvelope
+    set?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    disconnect?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    delete?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    connect?: WebhookLogWhereUniqueInput | WebhookLogWhereUniqueInput[]
+    update?: WebhookLogUpdateWithWhereUniqueWithoutEndpointInput | WebhookLogUpdateWithWhereUniqueWithoutEndpointInput[]
+    updateMany?: WebhookLogUpdateManyWithWhereWithoutEndpointInput | WebhookLogUpdateManyWithWhereWithoutEndpointInput[]
+    deleteMany?: WebhookLogScalarWhereInput | WebhookLogScalarWhereInput[]
   }
 
   export type endpointCreateNestedOneWithoutMappingInput = {
@@ -15352,14 +18811,6 @@ export namespace Prisma {
     connectOrCreate?: AuthenticatorCreateOrConnectWithoutUserInput | AuthenticatorCreateOrConnectWithoutUserInput[]
     createMany?: AuthenticatorCreateManyUserInputEnvelope
     connect?: AuthenticatorWhereUniqueInput | AuthenticatorWhereUniqueInput[]
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type AccountUpdateManyWithoutUserNestedInput = {
@@ -15452,14 +18903,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type UserUpdateOneRequiredWithoutAccountsNestedInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -15494,10 +18937,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutAuthenticatorNestedInput = {
@@ -15592,17 +19031,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -15613,33 +19041,28 @@ export namespace Prisma {
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -15669,9 +19092,56 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -15699,14 +19169,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type apiCreateWithoutCompanyInput = {
@@ -15816,9 +19278,13 @@ export namespace Prisma {
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
     sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
+    logs?: apiLogCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointUncheckedCreateWithoutApiInput = {
@@ -15828,8 +19294,12 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
+    logs?: apiLogUncheckedCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogUncheckedCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointCreateOrConnectWithoutApiInput = {
@@ -15927,6 +19397,160 @@ export namespace Prisma {
     path?: StringFilter<"endpoint"> | string
     targetendpointId?: StringNullableFilter<"endpoint"> | string | null
     description?: StringNullableFilter<"endpoint"> | string | null
+    sourceExmpObj?: JsonNullableFilter<"endpoint">
+    targetExmpObj?: JsonNullableFilter<"endpoint">
+  }
+
+  export type endpointCreateWithoutLogsInput = {
+    id?: string
+    name: string
+    method: string
+    path: string
+    description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    api: apiCreateNestedOneWithoutEndpointsInput
+    targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
+    sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
+    mapping?: mappingCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogCreateNestedManyWithoutEndpointInput
+  }
+
+  export type endpointUncheckedCreateWithoutLogsInput = {
+    id?: string
+    name: string
+    apiId: string
+    method: string
+    path: string
+    targetendpointId?: string | null
+    description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
+    mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogUncheckedCreateNestedManyWithoutEndpointInput
+  }
+
+  export type endpointCreateOrConnectWithoutLogsInput = {
+    where: endpointWhereUniqueInput
+    create: XOR<endpointCreateWithoutLogsInput, endpointUncheckedCreateWithoutLogsInput>
+  }
+
+  export type endpointUpsertWithoutLogsInput = {
+    update: XOR<endpointUpdateWithoutLogsInput, endpointUncheckedUpdateWithoutLogsInput>
+    create: XOR<endpointCreateWithoutLogsInput, endpointUncheckedCreateWithoutLogsInput>
+    where?: endpointWhereInput
+  }
+
+  export type endpointUpdateToOneWithWhereWithoutLogsInput = {
+    where?: endpointWhereInput
+    data: XOR<endpointUpdateWithoutLogsInput, endpointUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type endpointUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
+    targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
+    mapping?: mappingUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUpdateManyWithoutEndpointNestedInput
+  }
+
+  export type endpointUncheckedUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    apiId?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
+    mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput
+  }
+
+  export type endpointCreateWithoutWebhookLogsInput = {
+    id?: string
+    name: string
+    method: string
+    path: string
+    description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    api: apiCreateNestedOneWithoutEndpointsInput
+    targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
+    sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
+    mapping?: mappingCreateNestedManyWithoutEndpointInput
+    logs?: apiLogCreateNestedManyWithoutEndpointInput
+  }
+
+  export type endpointUncheckedCreateWithoutWebhookLogsInput = {
+    id?: string
+    name: string
+    apiId: string
+    method: string
+    path: string
+    targetendpointId?: string | null
+    description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
+    mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
+    logs?: apiLogUncheckedCreateNestedManyWithoutEndpointInput
+  }
+
+  export type endpointCreateOrConnectWithoutWebhookLogsInput = {
+    where: endpointWhereUniqueInput
+    create: XOR<endpointCreateWithoutWebhookLogsInput, endpointUncheckedCreateWithoutWebhookLogsInput>
+  }
+
+  export type endpointUpsertWithoutWebhookLogsInput = {
+    update: XOR<endpointUpdateWithoutWebhookLogsInput, endpointUncheckedUpdateWithoutWebhookLogsInput>
+    create: XOR<endpointCreateWithoutWebhookLogsInput, endpointUncheckedCreateWithoutWebhookLogsInput>
+    where?: endpointWhereInput
+  }
+
+  export type endpointUpdateToOneWithWhereWithoutWebhookLogsInput = {
+    where?: endpointWhereInput
+    data: XOR<endpointUpdateWithoutWebhookLogsInput, endpointUncheckedUpdateWithoutWebhookLogsInput>
+  }
+
+  export type endpointUpdateWithoutWebhookLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
+    targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
+    sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
+    mapping?: mappingUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUpdateManyWithoutEndpointNestedInput
+  }
+
+  export type endpointUncheckedUpdateWithoutWebhookLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    apiId?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
+    mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
   export type apiCreateWithoutEndpointsInput = {
@@ -15958,9 +19582,13 @@ export namespace Prisma {
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api: apiCreateNestedOneWithoutEndpointsInput
     targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
+    logs?: apiLogCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointUncheckedCreateWithoutSourceendpointInput = {
@@ -15971,7 +19599,11 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
+    logs?: apiLogUncheckedCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogUncheckedCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointCreateOrConnectWithoutSourceendpointInput = {
@@ -15985,9 +19617,13 @@ export namespace Prisma {
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api: apiCreateNestedOneWithoutEndpointsInput
     sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingCreateNestedManyWithoutEndpointInput
+    logs?: apiLogCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointUncheckedCreateWithoutTargetendpointInput = {
@@ -15997,8 +19633,12 @@ export namespace Prisma {
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
     mapping?: mappingUncheckedCreateNestedManyWithoutEndpointInput
+    logs?: apiLogUncheckedCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogUncheckedCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointCreateOrConnectWithoutTargetendpointInput = {
@@ -16032,6 +19672,84 @@ export namespace Prisma {
 
   export type mappingCreateManyEndpointInputEnvelope = {
     data: mappingCreateManyEndpointInput | mappingCreateManyEndpointInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type apiLogCreateWithoutEndpointInput = {
+    id?: string
+    status: string
+    method: string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    statusCode?: number | null
+    createdAt?: Date | string
+  }
+
+  export type apiLogUncheckedCreateWithoutEndpointInput = {
+    id?: string
+    status: string
+    method: string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    statusCode?: number | null
+    createdAt?: Date | string
+  }
+
+  export type apiLogCreateOrConnectWithoutEndpointInput = {
+    where: apiLogWhereUniqueInput
+    create: XOR<apiLogCreateWithoutEndpointInput, apiLogUncheckedCreateWithoutEndpointInput>
+  }
+
+  export type apiLogCreateManyEndpointInputEnvelope = {
+    data: apiLogCreateManyEndpointInput | apiLogCreateManyEndpointInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WebhookLogCreateWithoutEndpointInput = {
+    id?: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode?: number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    responseTime?: number | null
+    success?: boolean
+    timestamp?: Date | string
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WebhookLogUncheckedCreateWithoutEndpointInput = {
+    id?: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode?: number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    responseTime?: number | null
+    success?: boolean
+    timestamp?: Date | string
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WebhookLogCreateOrConnectWithoutEndpointInput = {
+    where: WebhookLogWhereUniqueInput
+    create: XOR<WebhookLogCreateWithoutEndpointInput, WebhookLogUncheckedCreateWithoutEndpointInput>
+  }
+
+  export type WebhookLogCreateManyEndpointInputEnvelope = {
+    data: WebhookLogCreateManyEndpointInput | WebhookLogCreateManyEndpointInput[]
     skipDuplicates?: boolean
   }
 
@@ -16081,9 +19799,13 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
     targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateWithoutSourceendpointInput = {
@@ -16094,7 +19816,11 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUncheckedUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUpsertWithWhereUniqueWithoutTargetendpointInput = {
@@ -16140,15 +19866,88 @@ export namespace Prisma {
     targetField?: StringFilter<"mapping"> | string
   }
 
+  export type apiLogUpsertWithWhereUniqueWithoutEndpointInput = {
+    where: apiLogWhereUniqueInput
+    update: XOR<apiLogUpdateWithoutEndpointInput, apiLogUncheckedUpdateWithoutEndpointInput>
+    create: XOR<apiLogCreateWithoutEndpointInput, apiLogUncheckedCreateWithoutEndpointInput>
+  }
+
+  export type apiLogUpdateWithWhereUniqueWithoutEndpointInput = {
+    where: apiLogWhereUniqueInput
+    data: XOR<apiLogUpdateWithoutEndpointInput, apiLogUncheckedUpdateWithoutEndpointInput>
+  }
+
+  export type apiLogUpdateManyWithWhereWithoutEndpointInput = {
+    where: apiLogScalarWhereInput
+    data: XOR<apiLogUpdateManyMutationInput, apiLogUncheckedUpdateManyWithoutEndpointInput>
+  }
+
+  export type apiLogScalarWhereInput = {
+    AND?: apiLogScalarWhereInput | apiLogScalarWhereInput[]
+    OR?: apiLogScalarWhereInput[]
+    NOT?: apiLogScalarWhereInput | apiLogScalarWhereInput[]
+    id?: StringFilter<"apiLog"> | string
+    endpointId?: StringFilter<"apiLog"> | string
+    status?: StringFilter<"apiLog"> | string
+    method?: StringFilter<"apiLog"> | string
+    requestBody?: JsonNullableFilter<"apiLog">
+    responseBody?: JsonNullableFilter<"apiLog">
+    errorMessage?: StringNullableFilter<"apiLog"> | string | null
+    statusCode?: IntNullableFilter<"apiLog"> | number | null
+    createdAt?: DateTimeFilter<"apiLog"> | Date | string
+  }
+
+  export type WebhookLogUpsertWithWhereUniqueWithoutEndpointInput = {
+    where: WebhookLogWhereUniqueInput
+    update: XOR<WebhookLogUpdateWithoutEndpointInput, WebhookLogUncheckedUpdateWithoutEndpointInput>
+    create: XOR<WebhookLogCreateWithoutEndpointInput, WebhookLogUncheckedCreateWithoutEndpointInput>
+  }
+
+  export type WebhookLogUpdateWithWhereUniqueWithoutEndpointInput = {
+    where: WebhookLogWhereUniqueInput
+    data: XOR<WebhookLogUpdateWithoutEndpointInput, WebhookLogUncheckedUpdateWithoutEndpointInput>
+  }
+
+  export type WebhookLogUpdateManyWithWhereWithoutEndpointInput = {
+    where: WebhookLogScalarWhereInput
+    data: XOR<WebhookLogUpdateManyMutationInput, WebhookLogUncheckedUpdateManyWithoutEndpointInput>
+  }
+
+  export type WebhookLogScalarWhereInput = {
+    AND?: WebhookLogScalarWhereInput | WebhookLogScalarWhereInput[]
+    OR?: WebhookLogScalarWhereInput[]
+    NOT?: WebhookLogScalarWhereInput | WebhookLogScalarWhereInput[]
+    id?: StringFilter<"WebhookLog"> | string
+    endpointId?: StringFilter<"WebhookLog"> | string
+    type?: StringFilter<"WebhookLog"> | string
+    method?: StringFilter<"WebhookLog"> | string
+    url?: StringFilter<"WebhookLog"> | string
+    status?: StringFilter<"WebhookLog"> | string
+    statusCode?: IntNullableFilter<"WebhookLog"> | number | null
+    requestBody?: JsonNullableFilter<"WebhookLog">
+    responseBody?: JsonNullableFilter<"WebhookLog">
+    errorMessage?: StringNullableFilter<"WebhookLog"> | string | null
+    responseTime?: IntNullableFilter<"WebhookLog"> | number | null
+    success?: BoolFilter<"WebhookLog"> | boolean
+    timestamp?: DateTimeFilter<"WebhookLog"> | Date | string
+    processedAt?: DateTimeNullableFilter<"WebhookLog"> | Date | string | null
+    createdAt?: DateTimeFilter<"WebhookLog"> | Date | string
+    updatedAt?: DateTimeFilter<"WebhookLog"> | Date | string
+  }
+
   export type endpointCreateWithoutMappingInput = {
     id?: string
     name: string
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api: apiCreateNestedOneWithoutEndpointsInput
     targetendpoint?: endpointCreateNestedOneWithoutSourceendpointInput
     sourceendpoint?: endpointCreateNestedManyWithoutTargetendpointInput
+    logs?: apiLogCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointUncheckedCreateWithoutMappingInput = {
@@ -16159,7 +19958,11 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedCreateNestedManyWithoutTargetendpointInput
+    logs?: apiLogUncheckedCreateNestedManyWithoutEndpointInput
+    webhookLogs?: WebhookLogUncheckedCreateNestedManyWithoutEndpointInput
   }
 
   export type endpointCreateOrConnectWithoutMappingInput = {
@@ -16184,9 +19987,13 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
     targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
     sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
+    logs?: apiLogUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateWithoutMappingInput = {
@@ -16197,7 +20004,11 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
+    logs?: apiLogUncheckedUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
   export type apiCreateWithoutApiAuthInput = {
@@ -16669,6 +20480,8 @@ export namespace Prisma {
     path: string
     targetendpointId?: string | null
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type endpointUpdateWithoutApiInput = {
@@ -16677,9 +20490,13 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     targetendpoint?: endpointUpdateOneWithoutSourceendpointNestedInput
     sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateWithoutApiInput = {
@@ -16689,8 +20506,12 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUncheckedUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateManyWithoutApiInput = {
@@ -16700,6 +20521,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     targetendpointId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type endpointCreateManyTargetendpointInput = {
@@ -16709,6 +20532,8 @@ export namespace Prisma {
     method: string
     path: string
     description?: string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type mappingCreateManyEndpointInput = {
@@ -16718,15 +20543,48 @@ export namespace Prisma {
     targetField: string
   }
 
+  export type apiLogCreateManyEndpointInput = {
+    id?: string
+    status: string
+    method: string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    statusCode?: number | null
+    createdAt?: Date | string
+  }
+
+  export type WebhookLogCreateManyEndpointInput = {
+    id?: string
+    type: string
+    method: string
+    url: string
+    status: string
+    statusCode?: number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: string | null
+    responseTime?: number | null
+    success?: boolean
+    timestamp?: Date | string
+    processedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type endpointUpdateWithoutTargetendpointInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     api?: apiUpdateOneRequiredWithoutEndpointsNestedInput
     sourceendpoint?: endpointUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateWithoutTargetendpointInput = {
@@ -16736,8 +20594,12 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
     sourceendpoint?: endpointUncheckedUpdateManyWithoutTargetendpointNestedInput
     mapping?: mappingUncheckedUpdateManyWithoutEndpointNestedInput
+    logs?: apiLogUncheckedUpdateManyWithoutEndpointNestedInput
+    webhookLogs?: WebhookLogUncheckedUpdateManyWithoutEndpointNestedInput
   }
 
   export type endpointUncheckedUpdateManyWithoutTargetendpointInput = {
@@ -16747,6 +20609,8 @@ export namespace Prisma {
     method?: StringFieldUpdateOperationsInput | string
     path?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    sourceExmpObj?: NullableJsonNullValueInput | InputJsonValue
+    targetExmpObj?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type mappingUpdateWithoutEndpointInput = {
@@ -16768,6 +20632,93 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     sourceField?: StringFieldUpdateOperationsInput | string
     targetField?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type apiLogUpdateWithoutEndpointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type apiLogUncheckedUpdateWithoutEndpointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type apiLogUncheckedUpdateManyWithoutEndpointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookLogUpdateWithoutEndpointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookLogUncheckedUpdateWithoutEndpointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WebhookLogUncheckedUpdateManyWithoutEndpointInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    statusCode?: NullableIntFieldUpdateOperationsInput | number | null
+    requestBody?: NullableJsonNullValueInput | InputJsonValue
+    responseBody?: NullableJsonNullValueInput | InputJsonValue
+    errorMessage?: NullableStringFieldUpdateOperationsInput | string | null
+    responseTime?: NullableIntFieldUpdateOperationsInput | number | null
+    success?: BoolFieldUpdateOperationsInput | boolean
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyUserInput = {

@@ -133,6 +133,37 @@ exports.Prisma.ApiScalarFieldEnum = {
   description: 'description'
 };
 
+exports.Prisma.ApiLogScalarFieldEnum = {
+  id: 'id',
+  endpointId: 'endpointId',
+  status: 'status',
+  method: 'method',
+  requestBody: 'requestBody',
+  responseBody: 'responseBody',
+  errorMessage: 'errorMessage',
+  statusCode: 'statusCode',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.WebhookLogScalarFieldEnum = {
+  id: 'id',
+  endpointId: 'endpointId',
+  type: 'type',
+  method: 'method',
+  url: 'url',
+  status: 'status',
+  statusCode: 'statusCode',
+  requestBody: 'requestBody',
+  responseBody: 'responseBody',
+  errorMessage: 'errorMessage',
+  responseTime: 'responseTime',
+  success: 'success',
+  timestamp: 'timestamp',
+  processedAt: 'processedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.EndpointScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -140,7 +171,9 @@ exports.Prisma.EndpointScalarFieldEnum = {
   method: 'method',
   path: 'path',
   targetendpointId: 'targetendpointId',
-  description: 'description'
+  description: 'description',
+  sourceExmpObj: 'sourceExmpObj',
+  targetExmpObj: 'targetExmpObj'
 };
 
 exports.Prisma.MappingScalarFieldEnum = {
@@ -221,6 +254,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -231,10 +269,18 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
   company: 'company',
   api: 'api',
+  apiLog: 'apiLog',
+  WebhookLog: 'WebhookLog',
   endpoint: 'endpoint',
   mapping: 'mapping',
   apiAuth: 'apiAuth',
