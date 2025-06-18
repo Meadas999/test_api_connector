@@ -8,10 +8,10 @@ import { prisma } from "@/app/prisma";
  */
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ logId: string }> }
 ) {
   try {
-    const logId = params.id;
+    const { logId } = await params;
 
     // Fetch complete webhook log details
     const log = await prisma.webhookLog.findUnique({
