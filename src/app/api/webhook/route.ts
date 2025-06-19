@@ -151,7 +151,7 @@ async function handleObjectCreated(payload: WebhookPayload, webhookLogId: string
 async function triggerMapping(endpointId: string, data: any) {
   try {
     // Call the mapping API to transform and forward the data
-    const response = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/map?endpointId=${endpointId}`, {
+    const response = await fetch(`${process.env.NEXTAUTH_URL || 'https://test-api-connector.onrender.com'}/api/map?endpointId=${endpointId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
