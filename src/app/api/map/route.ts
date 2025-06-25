@@ -11,9 +11,13 @@ export async function POST(request: Request) {
     let endpointId: string | null = null;
 
     try {
-        // Extract query parameters from the request URL
         const { searchParams } = new URL(request.url);
         endpointId = searchParams.get('endpointId');
+        
+        // Extract request context from headers or body
+        const requestId = searchParams.get('requestId');
+        const originEndpointId = searchParams.get('originEndpointId');
+        const hopCount = parseInt(searchParams.get('hopCount') || '0');
 
         // Validate that endpointId parameter is provided
         if (!endpointId) {
@@ -125,12 +129,25 @@ export async function POST(request: Request) {
         console.log("Target Method:", targetMethod);
         
         // Send the transformed data to the target API endpoint
+        const targetRequestBody = {
+            ...transformedObject,
+            _requestContext: {
+                requestId,
+                originEndpointId,
+                hopCount: hopCount + 1,
+                sourceEndpointId: endpointId
+            }
+        };
+
         const response = await fetch(targetUrl, {
             method: targetMethod,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-Request-ID': requestId || '',
+                'X-Origin-Endpoint': originEndpointId || '',
+                'X-Hop-Count': String(hopCount + 1)
             },
-            body: JSON.stringify(transformedObject)
+            body: JSON.stringify(targetRequestBody)
         });
 
         // Handle target API error responses

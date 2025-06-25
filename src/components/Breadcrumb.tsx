@@ -20,6 +20,7 @@ export default function Breadcrumb({ items, showBackButton = true }: BreadcrumbP
 
   const handleBack = () => {
     router.back();
+    
   };
 
   const handleNavigate = (href: string) => {
