@@ -67,6 +67,25 @@ model WebhookLog {
   @@map("webhook_logs")
 }
 
+model WebhookRegistration {
+  id             String   @id @default(cuid())
+  applicationName String
+  endpointId     String
+  endpoint       endpoint @relation(fields: [endpointId], references: [id], onDelete: Cascade)
+  webhookUrl     String   @unique // The unique URL we generate for them
+  callbackUrl    String?  // Their webhook URL (optional - for bidirectional)
+  events         String[] // ['object_created', 'object_updated', etc.]
+  authentication Json?
+  retryPolicy    Json?
+  active         Boolean  @default(true)
+  secret         String   // For signature verification
+  loopPrevention Json?    // Custom loop prevention settings
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  @@map("webhook_registrations")
+}
+
 model endpoint {
   id               String       @id @default(cuid())
   name             String
@@ -83,6 +102,7 @@ model endpoint {
   targetExmpObj    Json?
   logs             apiLog[]
   webhookLogs      WebhookLog[]
+  webhookRegistrations  WebhookRegistration[]
 }
 
 model mapping {

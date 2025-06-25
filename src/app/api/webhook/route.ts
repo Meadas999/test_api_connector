@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from "@/app/prisma";
+import { v4 as uuidv4 } from 'uuid';
+
+// In-memory store for tracking active requests (you could use Redis for production)
+const activeRequests = new Map<string, { timestamp: number; endpointChain: string[] }>();
+const MAX_HOP_COUNT = 5; // Maximum number of hops allowed
+const REQUEST_TIMEOUT = 5 * 60 * 1000; // 5 minutes timeout
 
 /**
  * Interface defining the structure of incoming webhook payloads
@@ -7,8 +13,11 @@ import { prisma } from "@/app/prisma";
 interface WebhookPayload {
   type: 'object_created';
   data: any;
-  endpointId: string; // Changed from apiId to endpointId
+  endpointId: string;
   timestamp: string;
+  requestId?: string; // Add unique request ID
+  originEndpointId?: string; // Track the original endpoint that started the chain
+  hopCount?: number; // Track how many hops this request has made
 }
 
 /**
@@ -18,60 +27,94 @@ interface WebhookPayload {
  */
 export async function POST(request: NextRequest) {
   let webhookLogId: string | null = null;
+  let payload: WebhookPayload | null = null;
   const startTime = Date.now();
 
   try {
     // Parse the webhook payload from the request body
-    const payload: WebhookPayload = await request.json();
+    payload = await request.json();
     
     console.log('Received webhook:', payload);
 
-    // Get the webhook URL and method from the request
-    const url = request.url;
-    const method = request.method;
+    // Validate payload exists
+    if (!payload) {
+      return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
+    }
 
-    // Create initial webhook log entry with 'received' status
+    // Generate or use existing request ID
+    const requestId = payload.requestId || uuidv4();
+    const originEndpointId = payload.originEndpointId || payload.endpointId;
+    const hopCount = (payload.hopCount || 0) + 1;
+
+    // **LOOP PREVENTION CHECKS**
+    
+    // 1. Check for maximum hop count
+    if (hopCount > MAX_HOP_COUNT) {
+      console.warn(`Request ${requestId} exceeded max hop count: ${hopCount}`);
+      return NextResponse.json({ 
+        error: 'Maximum hop count exceeded - potential infinite loop detected',
+        requestId,
+        hopCount 
+      }, { status: 400 });
+    }
+
+    // 2. Check if this request is already being processed
+    const existingRequest = activeRequests.get(requestId);
+    if (existingRequest) {
+      // 3. Check for direct circular calls (A -> B -> A)
+      if (existingRequest.endpointChain.includes(payload.endpointId)) {
+        console.warn(`Circular loop detected in request ${requestId}: ${existingRequest.endpointChain.join(' -> ')} -> ${payload.endpointId}`);
+        return NextResponse.json({ 
+          error: 'Circular loop detected',
+          requestId,
+          chain: [...existingRequest.endpointChain, payload.endpointId]
+        }, { status: 400 });
+      }
+    }
+
+    // Register this request as active
+    activeRequests.set(requestId, {
+      timestamp: Date.now(),
+      endpointChain: existingRequest ? [...existingRequest.endpointChain, payload.endpointId] : [payload.endpointId]
+    });
+
+    // Clean up old requests (older than timeout)
+    cleanupOldRequests();
+
+    // Create webhook log
     const webhookLog = await prisma.webhookLog.create({
       data: {
-        endpointId: payload.endpointId, // Use endpointId instead of apiId
+        endpointId: payload.endpointId,
         type: payload.type,
-        method: method,
-        url: url,
+        method: request.method,
+        url: request.url,
         status: 'received',
-        requestBody: payload as any,
+        requestBody: { 
+          ...payload, 
+          requestId, 
+          originEndpointId, 
+          hopCount 
+        } as any,
         timestamp: new Date(payload.timestamp),
-        success: false, // Initially false, will be updated on success
+        success: false,
       }
     });
     webhookLogId = webhookLog.id;
-    
-    // Verify the webhook type is supported
-    if (payload.type !== 'object_created') {
-      // Calculate response time
-      const responseTime = Date.now() - startTime;
-      
-      // Update log entry with error status
-      await prisma.webhookLog.update({
-        where: { id: webhookLogId },
-        data: {
-          status: 'failed',
-          statusCode: 400,
-          errorMessage: 'Invalid webhook type',
-          responseTime: responseTime,
-          processedAt: new Date()
-        }
-      });
-      
-      return NextResponse.json({ error: 'Invalid webhook type' }, { status: 400 });
-    }
 
-    // Process the webhook and trigger mapping
-    const mappingResponse = await handleObjectCreated(payload, webhookLogId);
+    // Process the webhook
+    const enrichedPayload = {
+      ...payload,
+      requestId,
+      originEndpointId,
+      hopCount
+    };
+
+    const mappingResponse = await handleObjectCreated(enrichedPayload, webhookLogId);
     
     // Calculate response time
     const responseTime = Date.now() - startTime;
     
-    // Update log entry with successful status
+    // Update log with success
     await prisma.webhookLog.update({
       where: { id: webhookLogId },
       data: {
@@ -83,20 +126,28 @@ export async function POST(request: NextRequest) {
         processedAt: new Date()
       }
     });
+
+    // Clean up the active request
+    activeRequests.delete(requestId);
     
     return NextResponse.json({ 
       message: 'Webhook processed successfully',
       webhookLogId: webhookLogId,
+      requestId,
+      hopCount,
       timestamp: new Date().toISOString()
     });
 
   } catch (error) {
     console.error('Webhook processing error:', error);
     
-    // Calculate response time
+    // Clean up active request on error
+    if (payload?.requestId) {
+      activeRequests.delete(payload.requestId);
+    }
+    
     const responseTime = Date.now() - startTime;
     
-    // Update log entry with error details if we have a log ID
     if (webhookLogId) {
       try {
         await prisma.webhookLog.update({
@@ -171,5 +222,14 @@ async function triggerMapping(endpointId: string, data: any) {
   } catch (error) {
     console.error('Error triggering mapping:', error);
     throw error;
+  }
+}
+
+function cleanupOldRequests() {
+  const now = Date.now();
+  for (const [requestId, request] of activeRequests.entries()) {
+    if (now - request.timestamp > REQUEST_TIMEOUT) {
+      activeRequests.delete(requestId);
+    }
   }
 }
