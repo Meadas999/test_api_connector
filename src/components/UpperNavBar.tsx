@@ -98,7 +98,7 @@ export default function UpperNavBar() {
             {DrawerList}
           </Drawer>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Api-Connector
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
